@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>フォーム処理 - AI×Web開発 中級編 | AI Tech Stack</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+        }
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- ヘッダー -->
+    <header class="gradient-bg text-white shadow-lg">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="text-2xl font-bold">AI Tech Stack Dojo <span class="text-blue-300">中級編</span></a>
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="hover:text-blue-300">ホーム</a>
+                    <a href="requirements.html" class="hover:text-blue-300">設計</a>
+                    <a href="docker-intro.html" class="hover:text-blue-300">Docker</a>
+                    <a href="mysql-intro.html" class="hover:text-blue-300">MySQL</a>
+                    <a href="auth-basics.html" class="hover:text-blue-300">認証</a>
+                    <a href="blog-design.html" class="hover:text-blue-300">実践</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 進捗バー -->
+    <div class="bg-white shadow">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between text-sm">
+                <span class="text-pink-600 font-bold">第5部：高度なフロントエンド</span>
+                <span class="text-gray-500">Step 15 / 24</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                <div class="bg-pink-600 h-2 rounded-full" style="width: 63%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- メインコンテンツ -->
+    <main class="container mx-auto px-6 py-12 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">フォーム処理</h1>
+
+        <!-- イントロ -->
+        <div class="bg-pink-50 border-l-4 border-pink-500 p-6 mb-8">
+            <p class="text-lg">フォームはユーザー入力の要。バリデーション、エラー表示、送信処理を適切に実装する方法を学びます。</p>
+        </div>
+
+        <!-- 基本的なフォーム -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-pink-200">基本的なフォーム（Controlled Component）</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>"use client";
+
+import { useState } from "react";
+
+export function BasicForm() {
+  const [formData, setFormData] = useState({
+    title: "",
+    content: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleChange = (
+    e: React.ChangeEvent&lt;HTMLInputElement | HTMLTextAreaElement&gt;
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const res = await fetch("/api/posts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        alert("投稿しました！");
+        setFormData({ title: "", content: "" });
+      }
+    } catch (error) {
+      alert("エラーが発生しました");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    &lt;form onSubmit={handleSubmit} className="space-y-4"&gt;
+      &lt;div&gt;
+        &lt;label className="block font-bold mb-1"&gt;タイトル&lt;/label&gt;
+        &lt;input
+          type="text"
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+          className="w-full border rounded px-3 py-2"
+          required
+        /&gt;
+      &lt;/div&gt;
+
+      &lt;div&gt;
+        &lt;label className="block font-bold mb-1"&gt;本文&lt;/label&gt;
+        &lt;textarea
+          name="content"
+          value={formData.content}
+          onChange={handleChange}
+          className="w-full border rounded px-3 py-2 h-32"
+          required
+        /&gt;
+      &lt;/div&gt;
+
+      &lt;button
+        type="submit"
+        disabled={isSubmitting}
+        className="bg-blue-600 text-white px-4 py-2 rounded disabled:opacity-50"
+      &gt;
+        {isSubmitting ? "送信中..." : "投稿する"}
+      &lt;/button&gt;
+    &lt;/form&gt;
+  );
+}</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- バリデーション -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-pink-200">バリデーション</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>"use client";
+
+import { useState } from "react";
+
+type Errors = {
+  title?: string;
+  content?: string;
+};
+
+export function ValidatedForm() {
+  const [formData, setFormData] = useState({ title: "", content: "" });
+  const [errors, setErrors] = useState&lt;Errors&gt;({});
+  const [touched, setTouched] = useState&lt;Record&lt;string, boolean&gt;&gt;({});
+
+  // バリデーション関数
+  const validate = (data: typeof formData): Errors => {
+    const errors: Errors = {};
+
+    if (!data.title.trim()) {
+      errors.title = "タイトルは必須です";
+    } else if (data.title.length &gt; 100) {
+      errors.title = "タイトルは100文字以内で入力してください";
+    }
+
+    if (!data.content.trim()) {
+      errors.content = "本文は必須です";
+    } else if (data.content.length &lt; 10) {
+      errors.content = "本文は10文字以上で入力してください";
+    }
+
+    return errors;
+  };
+
+  const handleChange = (
+    e: React.ChangeEvent&lt;HTMLInputElement | HTMLTextAreaElement&gt;
+  ) => {
+    const { name, value } = e.target;
+    const newData = { ...formData, [name]: value };
+    setFormData(newData);
+
+    // 入力中もバリデーション（touchedのフィールドのみ表示）
+    if (touched[name]) {
+      setErrors(validate(newData));
+    }
+  };
+
+  const handleBlur = (e: React.FocusEvent) => {
+    const { name } = e.target;
+    setTouched((prev) => ({ ...prev, [name]: true }));
+    setErrors(validate(formData));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // 全フィールドをtouchedに
+    setTouched({ title: true, content: true });
+
+    const validationErrors = validate(formData);
+    setErrors(validationErrors);
+
+    if (Object.keys(validationErrors).length === 0) {
+      // バリデーション成功
+      console.log("送信:", formData);
+    }
+  };
+
+  return (
+    &lt;form onSubmit={handleSubmit} className="space-y-4"&gt;
+      &lt;div&gt;
+        &lt;label className="block font-bold mb-1"&gt;タイトル&lt;/label&gt;
+        &lt;input
+          type="text"
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          className={`w-full border rounded px-3 py-2 ${
+            errors.title && touched.title ? "border-red-500" : ""
+          }`}
+        /&gt;
+        {errors.title && touched.title && (
+          &lt;p className="text-red-500 text-sm mt-1"&gt;{errors.title}&lt;/p&gt;
+        )}
+      &lt;/div&gt;
+
+      &lt;div&gt;
+        &lt;label className="block font-bold mb-1"&gt;本文&lt;/label&gt;
+        &lt;textarea
+          name="content"
+          value={formData.content}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          className={`w-full border rounded px-3 py-2 h-32 ${
+            errors.content && touched.content ? "border-red-500" : ""
+          }`}
+        /&gt;
+        {errors.content && touched.content && (
+          &lt;p className="text-red-500 text-sm mt-1"&gt;{errors.content}&lt;/p&gt;
+        )}
+      &lt;/div&gt;
+
+      &lt;button
+        type="submit"
+        className="bg-blue-600 text-white px-4 py-2 rounded"
+      &gt;
+        投稿する
+      &lt;/button&gt;
+    &lt;/form&gt;
+  );
+}</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- 再利用可能なInput -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-pink-200">再利用可能なInputコンポーネント</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h3 class="font-bold mb-4">components/ui/Input.tsx</h3>
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>type InputProps = {
+  label: string;
+  name: string;
+  type?: string;
+  value: string;
+  onChange: (e: React.ChangeEvent&lt;HTMLInputElement&gt;) => void;
+  onBlur?: (e: React.FocusEvent&lt;HTMLInputElement&gt;) => void;
+  error?: string;
+  placeholder?: string;
+};
+
+export function Input({
+  label,
+  name,
+  type = "text",
+  value,
+  onChange,
+  onBlur,
+  error,
+  placeholder,
+}: InputProps) {
+  return (
+    &lt;div className="mb-4"&gt;
+      &lt;label htmlFor={name} className="block font-bold mb-1"&gt;
+        {label}
+      &lt;/label&gt;
+      &lt;input
+        id={name}
+        name={name}
+        type={type}
+        value={value}
+        onChange={onChange}
+        onBlur={onBlur}
+        placeholder={placeholder}
+        className={`w-full border rounded px-3 py-2 ${
+          error ? "border-red-500 bg-red-50" : "border-gray-300"
+        }`}
+      /&gt;
+      {error && &lt;p className="text-red-500 text-sm mt-1"&gt;{error}&lt;/p&gt;}
+    &lt;/div&gt;
+  );
+}</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- ファイルアップロード -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-pink-200">ファイルアップロード</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>"use client";
+
+import { useState } from "react";
+
+export function FileUpload() {
+  const [file, setFile] = useState&lt;File | null&gt;(null);
+  const [preview, setPreview] = useState&lt;string | null&gt;(null);
+
+  const handleFileChange = (e: React.ChangeEvent&lt;HTMLInputElement&gt;) => {
+    const selectedFile = e.target.files?.[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+
+      // プレビュー表示
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreview(reader.result as string);
+      };
+      reader.readAsDataURL(selectedFile);
+    }
+  };
+
+  const handleUpload = async () => {
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const res = await fetch("/api/upload", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (res.ok) {
+      alert("アップロード完了！");
+    }
+  };
+
+  return (
+    &lt;div className="space-y-4"&gt;
+      &lt;input
+        type="file"
+        accept="image/*"
+        onChange={handleFileChange}
+        className="block"
+      /&gt;
+
+      {preview && (
+        &lt;img src={preview} alt="Preview" className="w-48 h-48 object-cover" /&gt;
+      )}
+
+      &lt;button
+        onClick={handleUpload}
+        disabled={!file}
+        className="bg-blue-600 text-white px-4 py-2 rounded disabled:opacity-50"
+      &gt;
+        アップロード
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- まとめ -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-pink-200">まとめ</h2>
+            <div class="bg-pink-50 p-6 rounded-lg">
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <span class="text-pink-600 mr-2">✓</span>
+                        <span>Controlled Componentでフォームを管理</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-pink-600 mr-2">✓</span>
+                        <span>バリデーションはフィールドごとに実装</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-pink-600 mr-2">✓</span>
+                        <span>touched状態でエラー表示タイミングを制御</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-pink-600 mr-2">✓</span>
+                        <span>送信中は二重送信防止（disabled）</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ナビゲーション -->
+        <div class="flex justify-between items-center pt-8 border-t">
+            <a href="state-management.html" class="flex items-center text-gray-600 hover:text-pink-600">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                状態管理
+            </a>
+            <a href="data-fetching.html" class="flex items-center bg-pink-600 text-white px-6 py-3 rounded-lg hover:bg-pink-700">
+                次へ：データフェッチ
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-400">AI×Web開発 中級編</p>
+        </div>
+    </footer>
+</body>
+</html>

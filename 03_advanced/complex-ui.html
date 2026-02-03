@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>複雑なUIの実装 - AI駆動開発 上級編 | AI Tech Stack</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #dc2626 0%, #ea580c 50%, #f59e0b 100%); }
+        .code-block { background: #1e293b; color: #e2e8f0; }
+        .prompt-box { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #f59e0b; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <header class="gradient-bg text-white shadow-lg">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="text-2xl font-bold">AI Tech Stack Dojo <span class="text-yellow-200">上級編</span></a>
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="hover:text-yellow-200">ホーム</a>
+                    <a href="ai-large-project.html" class="hover:text-yellow-200">AI深化</a>
+                    <a href="ai-architecture.html" class="hover:text-yellow-200">設計</a>
+                    <a href="ai-testing.html" class="hover:text-yellow-200">テスト</a>
+                    <a href="mcp-intro.html" class="hover:text-yellow-200">MCP</a>
+                    <a href="project-design.html" class="hover:text-yellow-200">実践</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="bg-white shadow">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between text-sm">
+                <span class="text-orange-600 font-bold">第4部：AIとフロントエンド高度化</span>
+                <span class="text-gray-500">Step 13 / 36</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                <div class="bg-orange-500 h-2 rounded-full" style="width: 36%"></div>
+            </div>
+        </div>
+    </div>
+
+    <main class="container mx-auto px-6 py-12 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">複雑なUIの実装</h1>
+
+        <div class="bg-orange-50 border-l-4 border-orange-500 p-6 mb-8">
+            <p class="text-lg">ドラッグ&ドロップ、無限スクロール、仮想リストなど、複雑なUIをAIに段階的に依頼しながら実装します。</p>
+        </div>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-orange-200">ドラッグ&ドロップ（カンバンボード）</h2>
+
+            <div class="prompt-box p-4 rounded mb-6">
+                <h4 class="font-bold mb-2">AIへの指示</h4>
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>@dnd-kit/core を使ってカンバンボードを実装してください。
+
+【要件】
+- 3つのカラム: Todo, In Progress, Done
+- タスクをカラム間でドラッグ&ドロップ
+- ドロップ時にAPIを呼んでステータス更新
+- ドラッグ中のビジュアルフィードバック
+
+段階的に実装してください：
+1. まず基本的なドラッグ&ドロップ
+2. 次にカラム間の移動
+3. 最後にAPI連携</pre>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h3 class="font-bold mb-3">実装の構成</h3>
+                <div class="space-y-2 text-sm">
+                    <div class="p-2 bg-gray-50 rounded"><code>KanbanBoard.tsx</code> - DndContext を提供</div>
+                    <div class="p-2 bg-gray-50 rounded"><code>Column.tsx</code> - useDroppable でドロップ領域</div>
+                    <div class="p-2 bg-gray-50 rounded"><code>TaskCard.tsx</code> - useDraggable でドラッグ可能</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-orange-200">無限スクロール</h2>
+
+            <div class="prompt-box p-4 rounded mb-6">
+                <h4 class="font-bold mb-2">AIへの指示</h4>
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>Intersection Observer を使った無限スクロールを実装してください。
+
+【要件】
+- スクロール末尾に到達したら次のページを読み込み
+- ローディング表示
+- エラー時のリトライボタン
+- TanStack Query (React Query) と組み合わせ</pre>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h3 class="font-bold mb-3">実装例</h3>
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+  useInfiniteQuery({
+    queryKey: ['posts'],
+    queryFn: ({ pageParam = 1 }) => fetchPosts(pageParam),
+    getNextPageParam: (lastPage) => lastPage.nextPage,
+  });
+
+// Intersection Observer でトリガー
+const ref = useRef(null);
+useEffect(() => {
+  const observer = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting && hasNextPage) {
+      fetchNextPage();
+    }
+  });
+  if (ref.current) observer.observe(ref.current);
+  return () => observer.disconnect();
+}, [hasNextPage]);</pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-orange-200">仮想リスト</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h3 class="font-bold mb-3">大量データの効率的な表示</h3>
+                <p class="text-sm text-gray-600 mb-4">10,000件以上のリストを表示する場合、@tanstack/react-virtual で仮想化</p>
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>import { useVirtualizer } from '@tanstack/react-virtual';
+
+const virtualizer = useVirtualizer({
+  count: items.length,
+  getScrollElement: () => parentRef.current,
+  estimateSize: () => 50,
+});</pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-orange-200">まとめ</h2>
+            <div class="bg-orange-50 p-6 rounded-lg">
+                <ul class="space-y-3">
+                    <li class="flex items-start"><span class="text-orange-600 mr-2">✓</span><span><strong>段階的に実装</strong> - 複雑なUIは小さく分けて依頼</span></li>
+                    <li class="flex items-start"><span class="text-orange-600 mr-2">✓</span><span><strong>ライブラリを活用</strong> - dnd-kit、react-virtual など</span></li>
+                    <li class="flex items-start"><span class="text-orange-600 mr-2">✓</span><span><strong>パフォーマンスを意識</strong> - 仮想化、遅延読み込み</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="flex justify-between items-center pt-8 border-t">
+            <a href="frontend-performance.html" class="flex items-center text-gray-600 hover:text-orange-600">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                パフォーマンス改善
+            </a>
+            <a href="accessibility.html" class="flex items-center bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600">
+                次へ：アクセシビリティ対応
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </a>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-6 text-center"><p class="text-gray-400">AI駆動開発 上級編</p></div>
+    </footer>
+</body>
+</html>

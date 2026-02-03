@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E2Eテストの自動生成 - AI駆動開発 上級編 | AI Tech Stack</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #dc2626 0%, #ea580c 50%, #f59e0b 100%); }
+        .code-block { background: #1e293b; color: #e2e8f0; }
+        .prompt-box { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #f59e0b; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <header class="gradient-bg text-white shadow-lg">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="text-2xl font-bold">AI Tech Stack Dojo <span class="text-yellow-200">上級編</span></a>
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="hover:text-yellow-200">ホーム</a>
+                    <a href="ai-large-project.html" class="hover:text-yellow-200">AI深化</a>
+                    <a href="ai-architecture.html" class="hover:text-yellow-200">設計</a>
+                    <a href="ai-testing.html" class="hover:text-yellow-200">テスト</a>
+                    <a href="mcp-intro.html" class="hover:text-yellow-200">MCP</a>
+                    <a href="project-design.html" class="hover:text-yellow-200">実践</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="bg-white shadow">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between text-sm">
+                <span class="text-orange-600 font-bold">第5部：AIとテスト・品質管理</span>
+                <span class="text-gray-500">Step 16 / 36</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                <div class="bg-orange-500 h-2 rounded-full" style="width: 44%"></div>
+            </div>
+        </div>
+    </div>
+
+    <main class="container mx-auto px-6 py-12 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">E2Eテストの自動生成</h1>
+
+        <div class="bg-orange-50 border-l-4 border-orange-500 p-6 mb-8">
+            <p class="text-lg">Playwrightを使ったE2Eテストをユーザーシナリオから自動生成します。</p>
+        </div>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-orange-200">シナリオからテスト生成</h2>
+
+            <div class="prompt-box p-4 rounded mb-6">
+                <h4 class="font-bold mb-2">AIへの指示</h4>
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>以下のユーザーシナリオに対するPlaywrightテストを生成してください。
+
+【シナリオ: ユーザー登録からログインまで】
+1. トップページにアクセス
+2. 「新規登録」ボタンをクリック
+3. メールアドレスとパスワードを入力
+4. 「登録」ボタンをクリック
+5. 登録完了メッセージが表示される
+6. 自動的にダッシュボードにリダイレクト
+
+【URL】
+- トップ: /
+- 登録: /register
+- ダッシュボード: /dashboard</pre>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h3 class="font-bold mb-3">生成されるテスト</h3>
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>import { test, expect } from '@playwright/test';
+
+test('ユーザー登録からログインまでの流れ', async ({ page }) => {
+  // 1. トップページにアクセス
+  await page.goto('/');
+
+  // 2. 新規登録ボタンをクリック
+  await page.getByRole('link', { name: '新規登録' }).click();
+  await expect(page).toHaveURL('/register');
+
+  // 3. フォーム入力
+  await page.getByLabel('メールアドレス').fill('test@example.com');
+  await page.getByLabel('パスワード').fill('password123');
+
+  // 4. 登録ボタンをクリック
+  await page.getByRole('button', { name: '登録' }).click();
+
+  // 5. 完了メッセージを確認
+  await expect(page.getByText('登録が完了しました')).toBeVisible();
+
+  // 6. ダッシュボードにリダイレクト
+  await expect(page).toHaveURL('/dashboard');
+});</pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-orange-200">Page Object Model</h2>
+
+            <div class="prompt-box p-4 rounded mb-6">
+                <h4 class="font-bold mb-2">保守性の高いテスト構造</h4>
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>このテストをPage Object Modelパターンにリファクタリングしてください。
+
+- LoginPage
+- DashboardPage
+
+各ページクラスにはセレクタとアクションをカプセル化してください。</pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-orange-200">CI連携</h2>
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h3 class="font-bold mb-3">GitHub Actions設定</h3>
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>- name: Run Playwright tests
+  run: npx playwright test
+- name: Upload test results
+  uses: actions/upload-artifact@v3
+  with:
+    name: playwright-report
+    path: playwright-report/</pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-orange-200">まとめ</h2>
+            <div class="bg-orange-50 p-6 rounded-lg">
+                <ul class="space-y-3">
+                    <li class="flex items-start"><span class="text-orange-600 mr-2">✓</span><span><strong>シナリオベース</strong> - ユーザー操作を記述してテスト生成</span></li>
+                    <li class="flex items-start"><span class="text-orange-600 mr-2">✓</span><span><strong>Page Object</strong> - 保守性を高める構造化</span></li>
+                    <li class="flex items-start"><span class="text-orange-600 mr-2">✓</span><span><strong>CI統合</strong> - 自動実行でリグレッション防止</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="flex justify-between items-center pt-8 border-t">
+            <a href="ai-testing.html" class="flex items-center text-gray-600 hover:text-orange-600">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                テストコード生成
+            </a>
+            <a href="ai-code-review.html" class="flex items-center bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600">
+                次へ：AIコードレビュー
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </a>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-6 text-center"><p class="text-gray-400">AI駆動開発 上級編</p></div>
+    </footer>
+</body>
+</html>

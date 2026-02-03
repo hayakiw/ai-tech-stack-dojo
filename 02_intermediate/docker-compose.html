@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker Compose - AI×Web開発 中級編 | AI Tech Stack</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+        }
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- ヘッダー -->
+    <header class="gradient-bg text-white shadow-lg">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="text-2xl font-bold">AI Tech Stack Dojo <span class="text-blue-300">中級編</span></a>
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="hover:text-blue-300">ホーム</a>
+                    <a href="requirements.html" class="hover:text-blue-300">設計</a>
+                    <a href="docker-intro.html" class="hover:text-blue-300 font-bold">Docker</a>
+                    <a href="mysql-intro.html" class="hover:text-blue-300">MySQL</a>
+                    <a href="auth-basics.html" class="hover:text-blue-300">認証</a>
+                    <a href="blog-design.html" class="hover:text-blue-300">実践</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 進捗バー -->
+    <div class="bg-white shadow">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between text-sm">
+                <span class="text-cyan-600 font-bold">第2部：Docker入門</span>
+                <span class="text-gray-500">Step 7 / 24</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                <div class="bg-cyan-600 h-2 rounded-full" style="width: 29%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- メインコンテンツ -->
+    <main class="container mx-auto px-6 py-12 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">Docker Compose</h1>
+
+        <!-- イントロ -->
+        <div class="bg-cyan-50 border-l-4 border-cyan-500 p-6 mb-8">
+            <p class="text-lg">Docker Composeは、複数のコンテナをまとめて管理するツール。YAMLファイル1つで、フロント・バックエンド・DBを一括起動できます。</p>
+        </div>
+
+        <!-- なぜDocker Compose -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-cyan-200">なぜDocker Composeが必要か</h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-red-50 p-6 rounded-lg">
+                    <h3 class="font-bold text-red-700 mb-3">docker runだけの場合</h3>
+                    <div class="code-block p-3 rounded font-mono text-xs overflow-x-auto">
+<pre># 毎回これを打つ必要がある...
+docker run -d --name mysql \
+  -e MYSQL_ROOT_PASSWORD=secret \
+  -p 3306:3306 mysql:8.0
+
+docker run -d --name backend \
+  -p 8000:8000 \
+  --link mysql my-backend
+
+docker run -d --name frontend \
+  -p 3000:3000 \
+  --link backend my-frontend</pre>
+                    </div>
+                    <p class="text-sm text-red-600 mt-3">コマンドが長い、順番を覚える必要がある</p>
+                </div>
+                <div class="bg-green-50 p-6 rounded-lg">
+                    <h3 class="font-bold text-green-700 mb-3">Docker Composeの場合</h3>
+                    <div class="code-block p-3 rounded font-mono text-xs">
+<pre># これだけで全部起動！
+docker compose up -d
+
+# 停止も簡単
+docker compose down</pre>
+                    </div>
+                    <p class="text-sm text-green-600 mt-3">設定はYAMLファイルに書くだけ</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- compose.yaml の書き方 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-cyan-200">compose.yaml の基本構造</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre># compose.yaml（旧: docker-compose.yml）
+services:
+  # サービス名（自由につけられる）
+  サービス名:
+    image: イメージ名        # 使用するイメージ
+    build: ./path           # または Dockerfile のパス
+    ports:
+      - "ホスト:コンテナ"    # ポート転送
+    volumes:
+      - ./host:/container   # ボリュームマウント
+    environment:
+      - 環境変数=値          # 環境変数
+    depends_on:
+      - 依存サービス         # 起動順序の制御</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- 実践例 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-cyan-200">ブログアプリの compose.yaml</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow mb-6">
+                <h3 class="font-bold mb-4">完全な設定例</h3>
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>services:
+  # MySQL データベース
+  db:
+    image: mysql:8.0
+    container_name: blog-db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: blog
+      MYSQL_USER: bloguser
+      MYSQL_PASSWORD: blogpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # FastAPI バックエンド
+  backend:
+    build: ./backend
+    container_name: blog-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    environment:
+      DATABASE_URL: mysql+pymysql://bloguser:blogpassword@db:3306/blog
+      SECRET_KEY: your-secret-key
+    depends_on:
+      db:
+        condition: service_healthy
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+  # Next.js フロントエンド
+  frontend:
+    build: ./frontend
+    container_name: blog-frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000
+    depends_on:
+      - backend
+    command: npm run dev
+
+# 名前付きボリューム
+volumes:
+  mysql-data:</pre>
+                </div>
+            </div>
+
+            <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4">
+                <p><strong>ポイント：</strong><code>depends_on</code>で起動順序を制御。<code>healthcheck</code>でDBの準備完了を待ってからバックエンドを起動します。</p>
+            </div>
+        </section>
+
+        <!-- Dockerfile -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-cyan-200">Dockerfile の例</h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="font-bold mb-3 text-green-600">backend/Dockerfile</h3>
+                    <div class="code-block p-4 rounded font-mono text-xs overflow-x-auto">
+<pre>FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+EXPOSE 8000
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]</pre>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="font-bold mb-3 text-blue-600">frontend/Dockerfile</h3>
+                    <div class="code-block p-4 rounded font-mono text-xs overflow-x-auto">
+<pre>FROM node:20-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+EXPOSE 3000
+
+CMD ["npm", "run", "dev"]</pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- コマンド -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-cyan-200">Docker Compose コマンド</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead class="bg-cyan-50">
+                        <tr>
+                            <th class="p-3 text-left">コマンド</th>
+                            <th class="p-3 text-left">説明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b">
+                            <td class="p-3 font-mono text-cyan-700">docker compose up</td>
+                            <td class="p-3">すべてのサービスを起動</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-mono text-cyan-700">docker compose up -d</td>
+                            <td class="p-3">バックグラウンドで起動</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-mono text-cyan-700">docker compose up --build</td>
+                            <td class="p-3">イメージを再ビルドして起動</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-mono text-cyan-700">docker compose down</td>
+                            <td class="p-3">すべてのサービスを停止・削除</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-mono text-cyan-700">docker compose down -v</td>
+                            <td class="p-3">ボリュームも含めて削除</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-mono text-cyan-700">docker compose ps</td>
+                            <td class="p-3">サービスの状態を確認</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-mono text-cyan-700">docker compose logs</td>
+                            <td class="p-3">すべてのログを表示</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-mono text-cyan-700">docker compose logs -f backend</td>
+                            <td class="p-3">特定サービスのログを追跡</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-mono text-cyan-700">docker compose exec backend bash</td>
+                            <td class="p-3">コンテナ内でシェル起動</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-mono text-cyan-700">docker compose restart backend</td>
+                            <td class="p-3">特定サービスを再起動</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 開発フロー -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-cyan-200">開発時の使い方</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre># 1. 初回起動
+docker compose up -d
+
+# 2. ログを確認しながら開発
+docker compose logs -f
+
+# 3. コードを変更（ホットリロードで反映）
+#    volumes でマウントしているので自動反映
+
+# 4. パッケージを追加した場合は再ビルド
+docker compose up -d --build backend
+
+# 5. DBに入りたい時
+docker compose exec db mysql -ubloguser -pblogpassword blog
+
+# 6. 開発終了
+docker compose down
+
+# 7. DBデータも消してリセット
+docker compose down -v</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- 環境変数ファイル -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-cyan-200">環境変数ファイル（.env）</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow mb-6">
+                <p class="mb-4">機密情報は<code>.env</code>ファイルに分離しましょう。</p>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="text-sm font-bold mb-2">.env</p>
+                        <div class="code-block p-3 rounded font-mono text-xs">
+<pre>MYSQL_ROOT_PASSWORD=rootpassword
+MYSQL_DATABASE=blog
+MYSQL_USER=bloguser
+MYSQL_PASSWORD=blogpassword
+SECRET_KEY=your-secret-key</pre>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold mb-2">compose.yaml</p>
+                        <div class="code-block p-3 rounded font-mono text-xs">
+<pre>services:
+  db:
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-red-50 border-l-4 border-red-500 p-4">
+                <p><strong>重要：</strong><code>.env</code>は必ず<code>.gitignore</code>に追加！Gitにパスワードをコミットしないように。</p>
+            </div>
+        </section>
+
+        <!-- まとめ -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-cyan-200">まとめ</h2>
+            <div class="bg-cyan-50 p-6 rounded-lg">
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <span class="text-cyan-600 mr-2">✓</span>
+                        <span>Docker Composeで複数コンテナを一括管理</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-cyan-600 mr-2">✓</span>
+                        <span><code class="bg-white px-1 rounded">compose.yaml</code>に設定を記述</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-cyan-600 mr-2">✓</span>
+                        <span><code class="bg-white px-1 rounded">docker compose up -d</code>で起動、<code class="bg-white px-1 rounded">down</code>で停止</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-cyan-600 mr-2">✓</span>
+                        <span>機密情報は<code class="bg-white px-1 rounded">.env</code>に分離（Gitにコミットしない）</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ナビゲーション -->
+        <div class="flex justify-between items-center pt-8 border-t">
+            <a href="docker-basics.html" class="flex items-center text-gray-600 hover:text-cyan-600">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Docker基本操作
+            </a>
+            <a href="mysql-intro.html" class="flex items-center bg-cyan-600 text-white px-6 py-3 rounded-lg hover:bg-cyan-700">
+                次へ：MySQL入門
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-400">AI×Web開発 中級編</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>カウンターアプリを作る - AIでWebアプリ開発を学ぼう | AI Tech Stack</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- ヘッダー -->
+    <header class="gradient-bg text-white shadow-lg">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="text-2xl font-bold">AI Tech Stack Dojo</a>
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="hover:text-gray-200">ホーム</a>
+                    <a href="web-basics.html" class="hover:text-gray-200">基礎知識</a>
+                    <a href="setup.html" class="hover:text-gray-200">環境構築</a>
+                    <a href="tutorial-setup.html" class="hover:text-gray-200 font-bold">チュートリアル</a>
+                    <a href="errors.html" class="hover:text-gray-200">サポート</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 進捗バー -->
+    <div class="bg-white shadow">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between text-sm">
+                <span class="text-green-600 font-bold">第3部：実践チュートリアル</span>
+                <span class="text-gray-500">Step 13 / 20</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                <div class="bg-green-600 h-2 rounded-full" style="width: 65%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- メインコンテンツ -->
+    <main class="container mx-auto px-6 py-12 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">簡易チュートリアル：カウンターアプリ</h1>
+
+        <!-- イントロ -->
+        <div class="bg-green-50 border-l-4 border-green-500 p-6 mb-8">
+            <p class="text-lg">まずはシンプルなカウンターアプリを作って、Next.jsの基本を身につけましょう。このチュートリアルではAPI連携なしで、フロントエンドのみで完結します。</p>
+        </div>
+
+        <!-- 完成イメージ -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-green-200">完成イメージ</h2>
+
+            <div class="bg-white p-8 rounded-lg shadow text-center">
+                <p class="text-6xl font-bold mb-6">0</p>
+                <div class="flex justify-center gap-4">
+                    <button class="bg-red-500 text-white px-6 py-2 rounded-lg">-1</button>
+                    <button class="bg-gray-500 text-white px-6 py-2 rounded-lg">リセット</button>
+                    <button class="bg-blue-500 text-white px-6 py-2 rounded-lg">+1</button>
+                </div>
+            </div>
+
+            <div class="mt-4 p-4 bg-gray-100 rounded">
+                <p class="font-bold mb-2">学べること</p>
+                <ul class="list-disc list-inside text-sm space-y-1">
+                    <li>Next.jsプロジェクトの構造</li>
+                    <li>コンポーネントの作り方</li>
+                    <li>useState（状態管理）の使い方</li>
+                    <li>イベントハンドリング（クリック）</li>
+                    <li>Tailwind CSSでのスタイリング</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Step 1 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-green-200">Step 1: ページを編集する</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow mb-6">
+                <h3 class="font-bold mb-3 text-purple-600">AIへの指示（Claude Code / Cursor）</h3>
+                <div class="code-block p-4 rounded font-mono text-sm">
+<pre>frontend/src/app/page.tsx を編集して、
+シンプルなカウンターアプリを作成してください。
+
+機能：
+- 中央に大きく数字を表示
+- 「+1」ボタンで数字を増やす
+- 「-1」ボタンで数字を減らす
+- 「リセット」ボタンで0に戻す
+
+要件：
+- useStateを使用
+- Tailwind CSSでスタイリング
+- ボタンはそれぞれ色を変える（+1: 青、-1: 赤、リセット: グレー）</pre>
+                </div>
+            </div>
+
+            <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4">
+                <p><strong>ポイント：</strong>Next.js 13以降のApp Routerでは、useStateを使うコンポーネントは<code class="bg-white px-1 rounded">"use client"</code>を先頭に書く必要があります。</p>
+            </div>
+        </section>
+
+        <!-- Step 2 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-green-200">Step 2: 生成されたコードを確認</h2>
+
+            <p class="mb-4">AIが生成したコードは、おおよそ以下のような形になります。</p>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h3 class="font-bold mb-3">src/app/page.tsx</h3>
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre><span class="text-green-400">"use client"</span>;
+
+<span class="text-purple-400">import</span> { useState } <span class="text-purple-400">from</span> <span class="text-green-400">"react"</span>;
+
+<span class="text-purple-400">export default function</span> <span class="text-blue-400">Home</span>() {
+  <span class="text-purple-400">const</span> [count, setCount] = <span class="text-blue-400">useState</span>(<span class="text-yellow-400">0</span>);
+
+  <span class="text-purple-400">return</span> (
+    <span class="text-cyan-400">&lt;main</span> className=<span class="text-green-400">"min-h-screen flex flex-col
+      items-center justify-center"</span><span class="text-cyan-400">&gt;</span>
+      <span class="text-cyan-400">&lt;h1</span> className=<span class="text-green-400">"text-6xl font-bold mb-8"</span><span class="text-cyan-400">&gt;</span>
+        {count}
+      <span class="text-cyan-400">&lt;/h1&gt;</span>
+
+      <span class="text-cyan-400">&lt;div</span> className=<span class="text-green-400">"flex gap-4"</span><span class="text-cyan-400">&gt;</span>
+        <span class="text-cyan-400">&lt;button</span>
+          onClick={() => <span class="text-blue-400">setCount</span>(count - <span class="text-yellow-400">1</span>)}
+          className=<span class="text-green-400">"bg-red-500 text-white px-6 py-2
+            rounded-lg hover:bg-red-600"</span>
+        <span class="text-cyan-400">&gt;</span>
+          -1
+        <span class="text-cyan-400">&lt;/button&gt;</span>
+
+        <span class="text-cyan-400">&lt;button</span>
+          onClick={() => <span class="text-blue-400">setCount</span>(<span class="text-yellow-400">0</span>)}
+          className=<span class="text-green-400">"bg-gray-500 text-white px-6 py-2
+            rounded-lg hover:bg-gray-600"</span>
+        <span class="text-cyan-400">&gt;</span>
+          リセット
+        <span class="text-cyan-400">&lt;/button&gt;</span>
+
+        <span class="text-cyan-400">&lt;button</span>
+          onClick={() => <span class="text-blue-400">setCount</span>(count + <span class="text-yellow-400">1</span>)}
+          className=<span class="text-green-400">"bg-blue-500 text-white px-6 py-2
+            rounded-lg hover:bg-blue-600"</span>
+        <span class="text-cyan-400">&gt;</span>
+          +1
+        <span class="text-cyan-400">&lt;/button&gt;</span>
+      <span class="text-cyan-400">&lt;/div&gt;</span>
+    <span class="text-cyan-400">&lt;/main&gt;</span>
+  );
+}</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 3 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-green-200">Step 3: 動作確認</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow mb-6">
+                <ol class="list-decimal list-inside space-y-3">
+                    <li>開発サーバーを起動: <code class="bg-gray-200 px-2 py-1 rounded">npm run dev</code></li>
+                    <li>ブラウザで <a href="http://localhost:3000" class="text-blue-600 hover:underline">http://localhost:3000</a> を開く</li>
+                    <li>ボタンをクリックして、数字が変わることを確認</li>
+                </ol>
+            </div>
+
+            <div class="bg-green-50 border-l-4 border-green-500 p-4">
+                <p><strong>成功！</strong>ボタンをクリックして数字が変われば、最初のアプリが完成です！</p>
+            </div>
+        </section>
+
+        <!-- コード解説 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-green-200">コード解説</h2>
+
+            <div class="space-y-6">
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <h3 class="font-bold mb-2 text-purple-600">"use client"</h3>
+                    <p class="text-sm text-gray-600">このコンポーネントがクライアント側（ブラウザ）で動くことを宣言。useStateなどのReact Hooksを使うときに必要。</p>
+                </div>
+
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <h3 class="font-bold mb-2 text-purple-600">const [count, setCount] = useState(0)</h3>
+                    <ul class="text-sm text-gray-600 list-disc list-inside space-y-1">
+                        <li><code class="bg-gray-200 px-1 rounded">count</code>: 現在の値（最初は0）</li>
+                        <li><code class="bg-gray-200 px-1 rounded">setCount</code>: 値を更新する関数</li>
+                        <li><code class="bg-gray-200 px-1 rounded">useState(0)</code>: 初期値を0に設定</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <h3 class="font-bold mb-2 text-purple-600">onClick={() => setCount(count + 1)}</h3>
+                    <p class="text-sm text-gray-600">ボタンがクリックされたとき、countを1増やした値でsetCountを呼び出す。これにより画面が再描画される。</p>
+                </div>
+
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <h3 class="font-bold mb-2 text-purple-600">className="..."</h3>
+                    <p class="text-sm text-gray-600">Tailwind CSSのクラスを指定。複数のクラスをスペース区切りで書く。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- チャレンジ -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-yellow-200 text-yellow-700">チャレンジ：機能を追加してみよう</h2>
+
+            <p class="mb-4">基本ができたら、以下の機能を追加してみましょう。AIに指示を出して実装してみてください。</p>
+
+            <div class="space-y-4">
+                <div class="bg-white p-4 rounded-lg shadow border-l-4 border-yellow-500">
+                    <h3 class="font-bold mb-2">チャレンジ 1: +5 / -5 ボタンを追加</h3>
+                    <p class="text-sm text-gray-600">「+5」と「-5」のボタンを追加して、5ずつ増減できるようにする</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow border-l-4 border-yellow-500">
+                    <h3 class="font-bold mb-2">チャレンジ 2: 最小値・最大値を設定</h3>
+                    <p class="text-sm text-gray-600">カウンターが0未満にならない、または100を超えないようにする</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow border-l-4 border-yellow-500">
+                    <h3 class="font-bold mb-2">チャレンジ 3: カウントに応じて色を変える</h3>
+                    <p class="text-sm text-gray-600">数字がマイナスなら赤、プラスなら緑で表示する</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 完了 -->
+        <div class="bg-green-100 border border-green-300 rounded-lg p-6 mb-8">
+            <h3 class="text-xl font-bold text-green-700 mb-2">カウンターアプリ完成！</h3>
+            <p class="text-green-600">Next.jsの基本的な使い方が分かったら、次はTodoアプリでバックエンド連携を学びましょう。</p>
+        </div>
+
+        <!-- ナビゲーション -->
+        <div class="flex justify-between items-center pt-8 border-t">
+            <a href="tutorial-setup.html" class="flex items-center text-gray-600 hover:text-green-600">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                前へ：チュートリアル準備
+            </a>
+            <a href="tutorial-todo-backend.html" class="flex items-center bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700">
+                次へ：Todoアプリ - バックエンド
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-400">AIでWebアプリ開発を学ぼう</p>
+        </div>
+    </footer>
+</body>
+</html>

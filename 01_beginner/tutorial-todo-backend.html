@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todoアプリ - バックエンド編 - AIでWebアプリ開発を学ぼう | AI Tech Stack</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- ヘッダー -->
+    <header class="gradient-bg text-white shadow-lg">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="text-2xl font-bold">AI Tech Stack Dojo</a>
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="hover:text-gray-200">ホーム</a>
+                    <a href="web-basics.html" class="hover:text-gray-200">基礎知識</a>
+                    <a href="setup.html" class="hover:text-gray-200">環境構築</a>
+                    <a href="tutorial-setup.html" class="hover:text-gray-200 font-bold">チュートリアル</a>
+                    <a href="errors.html" class="hover:text-gray-200">サポート</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 進捗バー -->
+    <div class="bg-white shadow">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between text-sm">
+                <span class="text-green-600 font-bold">第3部：実践チュートリアル</span>
+                <span class="text-gray-500">Step 14 / 20</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                <div class="bg-green-600 h-2 rounded-full" style="width: 70%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- メインコンテンツ -->
+    <main class="container mx-auto px-6 py-12 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">Todoアプリ - バックエンド編</h1>
+
+        <!-- イントロ -->
+        <div class="bg-green-50 border-l-4 border-green-500 p-6 mb-8">
+            <p class="text-lg">FastAPIを使って、TodoのCRUD API（作成・取得・更新・削除）を作成します。これがフロントエンドと連携するバックエンドになります。</p>
+        </div>
+
+        <!-- 作成するAPI -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-green-200">作成するAPIエンドポイント</h2>
+
+            <div class="bg-white p-4 rounded-lg shadow overflow-x-auto">
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="p-3">メソッド</th>
+                            <th class="p-3">パス</th>
+                            <th class="p-3">機能</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b">
+                            <td class="p-3"><span class="bg-blue-100 text-blue-700 px-2 py-1 rounded">GET</span></td>
+                            <td class="p-3 font-mono">/todos</td>
+                            <td class="p-3">全Todoを取得</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3"><span class="bg-green-100 text-green-700 px-2 py-1 rounded">POST</span></td>
+                            <td class="p-3 font-mono">/todos</td>
+                            <td class="p-3">新しいTodoを作成</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3"><span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded">PUT</span></td>
+                            <td class="p-3 font-mono">/todos/{id}</td>
+                            <td class="p-3">Todoを更新</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3"><span class="bg-red-100 text-red-700 px-2 py-1 rounded">DELETE</span></td>
+                            <td class="p-3 font-mono">/todos/{id}</td>
+                            <td class="p-3">Todoを削除</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Step 1 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-green-200">Step 1: データモデルの作成</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow mb-6">
+                <h3 class="font-bold mb-3 text-purple-600">AIへの指示</h3>
+                <div class="code-block p-4 rounded font-mono text-sm">
+<pre>backend/main.py を編集して、TodoのPydanticモデルを作成してください。
+
+Todoモデル:
+- id: int（自動生成）
+- title: str（タイトル）
+- completed: bool（完了フラグ、デフォルトはFalse）
+
+作成用モデル（TodoCreate）と更新用モデル（TodoUpdate）も作成してください。</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 2 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-green-200">Step 2: CRUDエンドポイントの作成</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow mb-6">
+                <h3 class="font-bold mb-3 text-purple-600">AIへの指示</h3>
+                <div class="code-block p-4 rounded font-mono text-sm">
+<pre>続けて、TodoのCRUDエンドポイントを作成してください。
+
+エンドポイント:
+1. GET /todos - 全Todoを取得
+2. POST /todos - 新しいTodoを作成
+3. PUT /todos/{todo_id} - Todoを更新
+4. DELETE /todos/{todo_id} - Todoを削除
+
+データはメモリ上のリストで管理してください（データベースは使わない）。
+サンプルデータを2-3件入れておいてください。</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- 完成コード -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-green-200">完成コード例</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h3 class="font-bold mb-3">backend/main.py</h3>
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre><span class="text-purple-400">from</span> fastapi <span class="text-purple-400">import</span> FastAPI, HTTPException
+<span class="text-purple-400">from</span> fastapi.middleware.cors <span class="text-purple-400">import</span> CORSMiddleware
+<span class="text-purple-400">from</span> pydantic <span class="text-purple-400">import</span> BaseModel
+<span class="text-purple-400">from</span> typing <span class="text-purple-400">import</span> Optional
+
+app = FastAPI()
+
+<span class="text-gray-400"># CORS設定</span>
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[<span class="text-green-400">"http://localhost:3000"</span>],
+    allow_credentials=<span class="text-purple-400">True</span>,
+    allow_methods=[<span class="text-green-400">"*"</span>],
+    allow_headers=[<span class="text-green-400">"*"</span>],
+)
+
+<span class="text-gray-400"># モデル定義</span>
+<span class="text-purple-400">class</span> <span class="text-blue-400">TodoCreate</span>(BaseModel):
+    title: <span class="text-blue-400">str</span>
+
+<span class="text-purple-400">class</span> <span class="text-blue-400">TodoUpdate</span>(BaseModel):
+    title: Optional[<span class="text-blue-400">str</span>] = <span class="text-purple-400">None</span>
+    completed: Optional[<span class="text-blue-400">bool</span>] = <span class="text-purple-400">None</span>
+
+<span class="text-purple-400">class</span> <span class="text-blue-400">Todo</span>(BaseModel):
+    id: <span class="text-blue-400">int</span>
+    title: <span class="text-blue-400">str</span>
+    completed: <span class="text-blue-400">bool</span> = <span class="text-purple-400">False</span>
+
+<span class="text-gray-400"># データ（メモリ上で管理）</span>
+todos: <span class="text-blue-400">list</span>[Todo] = [
+    Todo(id=<span class="text-yellow-400">1</span>, title=<span class="text-green-400">"買い物に行く"</span>, completed=<span class="text-purple-400">False</span>),
+    Todo(id=<span class="text-yellow-400">2</span>, title=<span class="text-green-400">"部屋を掃除する"</span>, completed=<span class="text-purple-400">True</span>),
+]
+next_id = <span class="text-yellow-400">3</span>
+
+<span class="text-gray-400"># 全Todo取得</span>
+<span class="text-pink-400">@app.get</span>(<span class="text-green-400">"/todos"</span>)
+<span class="text-purple-400">def</span> <span class="text-blue-400">get_todos</span>():
+    <span class="text-purple-400">return</span> todos
+
+<span class="text-gray-400"># Todo作成</span>
+<span class="text-pink-400">@app.post</span>(<span class="text-green-400">"/todos"</span>)
+<span class="text-purple-400">def</span> <span class="text-blue-400">create_todo</span>(todo: TodoCreate):
+    <span class="text-purple-400">global</span> next_id
+    new_todo = Todo(id=next_id, title=todo.title)
+    todos.append(new_todo)
+    next_id += <span class="text-yellow-400">1</span>
+    <span class="text-purple-400">return</span> new_todo
+
+<span class="text-gray-400"># Todo更新</span>
+<span class="text-pink-400">@app.put</span>(<span class="text-green-400">"/todos/{todo_id}"</span>)
+<span class="text-purple-400">def</span> <span class="text-blue-400">update_todo</span>(todo_id: <span class="text-blue-400">int</span>, todo_update: TodoUpdate):
+    <span class="text-purple-400">for</span> todo <span class="text-purple-400">in</span> todos:
+        <span class="text-purple-400">if</span> todo.id == todo_id:
+            <span class="text-purple-400">if</span> todo_update.title <span class="text-purple-400">is not None</span>:
+                todo.title = todo_update.title
+            <span class="text-purple-400">if</span> todo_update.completed <span class="text-purple-400">is not None</span>:
+                todo.completed = todo_update.completed
+            <span class="text-purple-400">return</span> todo
+    <span class="text-purple-400">raise</span> HTTPException(status_code=<span class="text-yellow-400">404</span>, detail=<span class="text-green-400">"Todo not found"</span>)
+
+<span class="text-gray-400"># Todo削除</span>
+<span class="text-pink-400">@app.delete</span>(<span class="text-green-400">"/todos/{todo_id}"</span>)
+<span class="text-purple-400">def</span> <span class="text-blue-400">delete_todo</span>(todo_id: <span class="text-blue-400">int</span>):
+    <span class="text-purple-400">for</span> i, todo <span class="text-purple-400">in</span> <span class="text-blue-400">enumerate</span>(todos):
+        <span class="text-purple-400">if</span> todo.id == todo_id:
+            todos.pop(i)
+            <span class="text-purple-400">return</span> {<span class="text-green-400">"message"</span>: <span class="text-green-400">"Todo deleted"</span>}
+    <span class="text-purple-400">raise</span> HTTPException(status_code=<span class="text-yellow-400">404</span>, detail=<span class="text-green-400">"Todo not found"</span>)</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- 動作確認 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-green-200">Step 3: 動作確認</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow mb-6">
+                <h3 class="font-bold mb-3">サーバーを起動</h3>
+                <div class="code-block p-3 rounded font-mono text-sm">
+                    uvicorn main:app --reload
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow mb-6">
+                <h3 class="font-bold mb-3">Swagger UIで確認</h3>
+                <p class="mb-3">ブラウザで <a href="http://localhost:8000/docs" class="text-blue-600 hover:underline">http://localhost:8000/docs</a> を開く</p>
+                <ul class="list-disc list-inside text-sm space-y-2">
+                    <li>各エンドポイントをクリックして「Try it out」</li>
+                    <li>GET /todos で一覧が取得できることを確認</li>
+                    <li>POST /todos で新しいTodoを追加してみる</li>
+                    <li>PUT /todos/{id} で完了状態を変更してみる</li>
+                    <li>DELETE /todos/{id} で削除してみる</li>
+                </ul>
+            </div>
+
+            <div class="bg-green-50 border-l-4 border-green-500 p-4">
+                <p><strong>成功！</strong>Swagger UIですべてのAPIが動作すれば、バックエンドは完成です！</p>
+            </div>
+        </section>
+
+        <!-- ナビゲーション -->
+        <div class="flex justify-between items-center pt-8 border-t">
+            <a href="tutorial-counter.html" class="flex items-center text-gray-600 hover:text-green-600">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                前へ：カウンターアプリ
+            </a>
+            <a href="tutorial-todo-frontend.html" class="flex items-center bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700">
+                次へ：フロントエンド編
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-400">AIでWebアプリ開発を学ぼう</p>
+        </div>
+    </footer>
+</body>
+</html>

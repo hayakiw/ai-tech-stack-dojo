@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ブログアプリ仕上げ編 - AI×Web開発 中級編 | AI Tech Stack</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+        }
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- ヘッダー -->
+    <header class="gradient-bg text-white shadow-lg">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="text-2xl font-bold">AI Tech Stack Dojo <span class="text-blue-300">中級編</span></a>
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="hover:text-blue-300">ホーム</a>
+                    <a href="requirements.html" class="hover:text-blue-300">設計</a>
+                    <a href="docker-intro.html" class="hover:text-blue-300">Docker</a>
+                    <a href="mysql-intro.html" class="hover:text-blue-300">MySQL</a>
+                    <a href="auth-basics.html" class="hover:text-blue-300">認証</a>
+                    <a href="blog-design.html" class="hover:text-blue-300 font-bold">実践</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 進捗バー -->
+    <div class="bg-white shadow">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between text-sm">
+                <span class="text-indigo-600 font-bold">第8部：実践プロジェクト</span>
+                <span class="text-gray-500">Step 24 / 24</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                <div class="bg-indigo-600 h-2 rounded-full" style="width: 100%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- メインコンテンツ -->
+    <main class="container mx-auto px-6 py-12 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">ブログアプリ仕上げ編</h1>
+
+        <!-- イントロ -->
+        <div class="bg-indigo-50 border-l-4 border-indigo-500 p-6 mb-8">
+            <p class="text-lg">基本機能が完成したら、品質向上とデプロイで仕上げましょう！</p>
+        </div>
+
+        <!-- 仕上げチェックリスト -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-indigo-200">仕上げチェックリスト</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="font-bold mb-3 text-green-600">機能テスト</h3>
+                        <ul class="text-sm space-y-2">
+                            <li class="flex items-center"><span class="w-5 h-5 border-2 rounded mr-3"></span>ユーザー登録ができる</li>
+                            <li class="flex items-center"><span class="w-5 h-5 border-2 rounded mr-3"></span>ログイン・ログアウトができる</li>
+                            <li class="flex items-center"><span class="w-5 h-5 border-2 rounded mr-3"></span>記事の作成ができる</li>
+                            <li class="flex items-center"><span class="w-5 h-5 border-2 rounded mr-3"></span>自分の記事の編集・削除ができる</li>
+                            <li class="flex items-center"><span class="w-5 h-5 border-2 rounded mr-3"></span>他人の記事は編集・削除できない</li>
+                            <li class="flex items-center"><span class="w-5 h-5 border-2 rounded mr-3"></span>未ログイン時は記事作成できない</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold mb-3 text-blue-600">UI/UX</h3>
+                        <ul class="text-sm space-y-2">
+                            <li class="flex items-center"><span class="w-5 h-5 border-2 rounded mr-3"></span>ローディング表示がある</li>
+                            <li class="flex items-center"><span class="w-5 h-5 border-2 rounded mr-3"></span>エラー時にメッセージが表示される</li>
+                            <li class="flex items-center"><span class="w-5 h-5 border-2 rounded mr-3"></span>レスポンシブ対応している</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold mb-3 text-red-600">セキュリティ</h3>
+                        <ul class="text-sm space-y-2">
+                            <li class="flex items-center"><span class="w-5 h-5 border-2 rounded mr-3"></span>パスワードはハッシュ化されている</li>
+                            <li class="flex items-center"><span class="w-5 h-5 border-2 rounded mr-3"></span>SECRET_KEYは環境変数化されている</li>
+                            <li class="flex items-center"><span class="w-5 h-5 border-2 rounded mr-3"></span>.envはGit除外されている</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- コードレビュー -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-indigo-200">AIにコードレビューを依頼</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h3 class="font-bold mb-4 text-purple-600">プロンプト例</h3>
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>以下のファイルをレビューしてください。
+
+[コードを貼り付け]
+
+確認観点：
+1. セキュリティ上の問題
+2. パフォーマンスの問題
+3. エラーハンドリング
+4. コードの可読性
+5. ベストプラクティスに沿っているか
+
+改善点があれば修正案も提示してください。</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- デプロイ -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-indigo-200">デプロイ</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h3 class="font-bold mb-4">推奨構成</h3>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="p-4 bg-blue-50 rounded text-center">
+                        <p class="font-bold text-blue-700">Frontend</p>
+                        <p class="text-sm">Vercel</p>
+                    </div>
+                    <div class="p-4 bg-green-50 rounded text-center">
+                        <p class="font-bold text-green-700">Backend</p>
+                        <p class="text-sm">Railway / Render</p>
+                    </div>
+                    <div class="p-4 bg-orange-50 rounded text-center">
+                        <p class="font-bold text-orange-700">Database</p>
+                        <p class="text-sm">Railway MySQL</p>
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <h4 class="font-bold mb-3">デプロイ手順</h4>
+                    <ol class="text-sm space-y-2">
+                        <li>1. GitHubにプッシュ</li>
+                        <li>2. RailwayでMySQL + Backendをデプロイ</li>
+                        <li>3. VercelでFrontendをデプロイ</li>
+                        <li>4. 環境変数を設定</li>
+                        <li>5. 動作確認</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- 発展課題 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-indigo-200">発展課題（チャレンジ）</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <p class="mb-4">基本機能が完成したら、以下の機能追加にチャレンジしてみましょう！</p>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="p-4 bg-gray-50 rounded">
+                        <h4 class="font-bold mb-2">画像アップロード</h4>
+                        <p class="text-sm text-gray-600">記事にサムネイル画像を追加</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded">
+                        <h4 class="font-bold mb-2">コメント機能</h4>
+                        <p class="text-sm text-gray-600">記事にコメントを投稿できるように</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded">
+                        <h4 class="font-bold mb-2">いいね機能</h4>
+                        <p class="text-sm text-gray-600">記事にいいねできるように</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded">
+                        <h4 class="font-bold mb-2">タグ機能</h4>
+                        <p class="text-sm text-gray-600">記事にタグを付けて分類</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded">
+                        <h4 class="font-bold mb-2">検索機能</h4>
+                        <p class="text-sm text-gray-600">タイトル・本文で記事を検索</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded">
+                        <h4 class="font-bold mb-2">プロフィール編集</h4>
+                        <p class="text-sm text-gray-600">ユーザー情報を編集できるように</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 完了 -->
+        <section class="mb-12">
+            <div class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white p-8 rounded-lg text-center">
+                <h2 class="text-3xl font-bold mb-4">おめでとうございます！</h2>
+                <p class="text-lg mb-6">中級編を完了しました！</p>
+                <div class="text-left max-w-md mx-auto">
+                    <p class="mb-4">習得したスキル：</p>
+                    <ul class="space-y-2 text-sm opacity-90">
+                        <li>✓ アプリケーション設計</li>
+                        <li>✓ Docker環境構築</li>
+                        <li>✓ MySQL + FastAPI連携</li>
+                        <li>✓ JWT認証の実装</li>
+                        <li>✓ Next.jsでの認証管理</li>
+                        <li>✓ テストとコードレビュー</li>
+                        <li>✓ デプロイ</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 次のステップ -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-indigo-200">次のステップ</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <span class="text-indigo-600 mr-3">→</span>
+                        <div>
+                            <p class="font-bold">オリジナルアプリを作る</p>
+                            <p class="text-sm text-gray-600">学んだことを活かして、自分のアイデアを形に</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-indigo-600 mr-3">→</span>
+                        <div>
+                            <p class="font-bold">発展課題にチャレンジ</p>
+                            <p class="text-sm text-gray-600">画像アップロード、コメント機能などを追加</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-indigo-600 mr-3">→</span>
+                        <div>
+                            <p class="font-bold">ポートフォリオとして公開</p>
+                            <p class="text-sm text-gray-600">GitHubにコードを公開、本番環境で運用</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ナビゲーション -->
+        <div class="flex justify-between items-center pt-8 border-t">
+            <a href="blog-implementation.html" class="flex items-center text-gray-600 hover:text-indigo-600">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                実装編
+            </a>
+            <a href="index.html" class="flex items-center bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700">
+                トップに戻る
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                </svg>
+            </a>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-400">AI×Web開発 中級編</p>
+        </div>
+    </footer>
+</body>
+</html>
