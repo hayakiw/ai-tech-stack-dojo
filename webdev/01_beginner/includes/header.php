@@ -7,7 +7,7 @@ $extra_styles = $extra_styles ?? '';
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <?php include '../includes/meta.php'; ?>
+    <?php include '.././includes/meta.php'; ?>
     <title><?php echo htmlspecialchars($page_title); ?></title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
