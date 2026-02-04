@@ -1,5 +1,5 @@
 <?php
-$page_title = 'AI Tech Stack Dojo - AIと学ぶWeb制作・開発・マーケティング・営業';
+$page_title = 'AI Tech Stack Dojo - AIと学ぶ';
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -23,6 +23,9 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶWeb制作・開発・マーケテ
         .card-sales {
             background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
         }
+        .card-bi {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+        }
         .hover-scale {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -38,13 +41,14 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶWeb制作・開発・マーケテ
         <div class="container mx-auto px-6 text-center">
             <h1 class="text-4xl md:text-6xl font-bold mb-6">AI Tech Stack Dojo</h1>
             <p class="text-xl md:text-2xl mb-4 opacity-90">AIと一緒に学ぶ、実践的なスキル習得サイト</p>
-            <p class="text-lg opacity-75 mb-8">完全初心者から、AIを活用したWeb制作・開発・マーケティング・営業を習得</p>
+            <p class="text-lg opacity-75 mb-8">完全初心者から、AIを活用したWeb制作・開発・マーケティング・営業・データ分析を習得</p>
             <div class="flex flex-wrap justify-center gap-3">
                 <span class="bg-white/20 px-3 py-2 rounded-full text-sm">ChatGPT / Claude</span>
                 <span class="bg-white/20 px-3 py-2 rounded-full text-sm">ホームページ制作</span>
                 <span class="bg-white/20 px-3 py-2 rounded-full text-sm">Web開発</span>
                 <span class="bg-white/20 px-3 py-2 rounded-full text-sm">マーケティング</span>
                 <span class="bg-white/20 px-3 py-2 rounded-full text-sm">営業・セールス</span>
+                <span class="bg-white/20 px-3 py-2 rounded-full text-sm">データ分析・BI</span>
             </div>
         </div>
     </section>
@@ -52,7 +56,7 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶWeb制作・開発・マーケテ
     <!-- コース選択 -->
     <section class="py-20 -mt-12">
         <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 max-w-7xl mx-auto">
                 <!-- ホームページ制作コース -->
                 <a href="hp/" class="block hover-scale">
                     <div class="card-hp text-white rounded-2xl overflow-hidden shadow-xl h-full">
@@ -192,6 +196,41 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶWeb制作・開発・マーケテ
                         </div>
                     </div>
                 </a>
+
+                <!-- データ分析・BIコース -->
+                <a href="bi/" class="block hover-scale">
+                    <div class="card-bi text-white rounded-2xl overflow-hidden shadow-xl h-full">
+                        <div class="p-6">
+                            <div class="text-5xl mb-3">📈</div>
+                            <h2 class="text-2xl font-bold mb-3">AI×データ分析・BI</h2>
+                            <p class="text-sm opacity-90 mb-4">AIでデータドリブンな意思決定を実現</p>
+                            <div class="space-y-2 text-sm opacity-80">
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    データ分析の基礎
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    AI×スプレッドシート活用
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    ダッシュボード・KPI設計
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white/20 px-6 py-3 flex justify-between items-center">
+                            <span class="font-bold text-sm">初心者向け / 14レッスン</span>
+                            <span class="bg-white text-emerald-600 px-3 py-1 rounded-full font-bold text-xs">始める →</span>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
@@ -229,7 +268,7 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶWeb制作・開発・マーケテ
     <section class="py-16 bg-gray-50">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl font-bold text-center mb-12">こんな方におすすめ</h2>
-            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
                 <div class="bg-white p-6 rounded-lg shadow flex items-start">
                     <div class="text-green-500 text-2xl mr-4">✓</div>
                     <div>
@@ -258,6 +297,13 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶWeb制作・開発・マーケテ
                         <p class="text-sm text-gray-600">AIを活用して営業成果を上げたい方</p>
                     </div>
                 </div>
+                <div class="bg-white p-6 rounded-lg shadow flex items-start">
+                    <div class="text-green-500 text-2xl mr-4">✓</div>
+                    <div>
+                        <h3 class="font-bold mb-1">データ分析に興味がある方</h3>
+                        <p class="text-sm text-gray-600">AIでデータを活用し、意思決定の質を高めたい方</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -280,6 +326,9 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶWeb制作・開発・マーケテ
                 <a href="sales/" class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-lg font-bold text-sm transition">
                     営業・セールス
                 </a>
+                <a href="bi/" class="inline-block bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2 rounded-lg font-bold text-sm transition">
+                    データ分析・BI
+                </a>
             </div>
         </div>
     </section>
@@ -294,6 +343,7 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶWeb制作・開発・マーケテ
                     <a href="webdev/" class="hover:text-gray-300">Web開発</a>
                     <a href="marketing/" class="hover:text-gray-300">マーケティング</a>
                     <a href="sales/" class="hover:text-gray-300">営業・セールス</a>
+                    <a href="bi/" class="hover:text-gray-300">データ分析・BI</a>
                 </div>
             </div>
             <div class="text-center mt-8 text-gray-400">
