@@ -29,6 +29,9 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶ';
         .card-automation {
             background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
         }
+        .card-sidejob {
+            background: linear-gradient(135deg, #e11d48 0%, #f43f5e 100%);
+        }
         .hover-scale {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -53,6 +56,7 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶ';
                 <span class="bg-white/20 px-3 py-2 rounded-full text-sm">営業・セールス</span>
                 <span class="bg-white/20 px-3 py-2 rounded-full text-sm">データ分析・BI</span>
                 <span class="bg-white/20 px-3 py-2 rounded-full text-sm">業務自動化</span>
+                <span class="bg-white/20 px-3 py-2 rounded-full text-sm">副業・フリーランス</span>
             </div>
         </div>
     </section>
@@ -270,6 +274,41 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶ';
                         </div>
                     </div>
                 </a>
+
+                <!-- 副業・フリーランスコース -->
+                <a href="sidejob/" class="block hover-scale">
+                    <div class="card-sidejob text-white rounded-2xl overflow-hidden shadow-xl h-full">
+                        <div class="p-6">
+                            <div class="text-5xl mb-3">🚀</div>
+                            <h2 class="text-2xl font-bold mb-3">AI×副業・フリーランス</h2>
+                            <p class="text-sm opacity-90 mb-4">AIを活用して副業で収入を得る</p>
+                            <div class="space-y-2 text-sm opacity-80">
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    副業の始め方・税金対策
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    案件獲得・ポートフォリオ
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    価格設定・契約・スケール
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white/20 px-6 py-3 flex justify-between items-center">
+                            <span class="font-bold text-sm">初心者向け / 14レッスン</span>
+                            <span class="bg-white text-rose-600 px-3 py-1 rounded-full font-bold text-xs">始める →</span>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
@@ -350,6 +389,13 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶ';
                         <p class="text-sm text-gray-600">繰り返し作業を自動化して生産性を上げたい方</p>
                     </div>
                 </div>
+                <div class="bg-white p-6 rounded-lg shadow flex items-start">
+                    <div class="text-green-500 text-2xl mr-4">✓</div>
+                    <div>
+                        <h3 class="font-bold mb-1">副業・フリーランスに興味がある方</h3>
+                        <p class="text-sm text-gray-600">AIを活用して副収入を得たい、独立したい方</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -378,6 +424,9 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶ';
                 <a href="process-auto/" class="inline-block bg-violet-500 hover:bg-violet-600 text-white px-5 py-2 rounded-lg font-bold text-sm transition">
                     業務自動化
                 </a>
+                <a href="sidejob/" class="inline-block bg-rose-500 hover:bg-rose-600 text-white px-5 py-2 rounded-lg font-bold text-sm transition">
+                    副業・フリーランス
+                </a>
             </div>
         </div>
     </section>
@@ -394,6 +443,7 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶ';
                     <a href="sales/" class="hover:text-gray-300">営業・セールス</a>
                     <a href="bi/" class="hover:text-gray-300">データ分析・BI</a>
                     <a href="process-auto/" class="hover:text-gray-300">業務自動化</a>
+                    <a href="sidejob/" class="hover:text-gray-300">副業・フリーランス</a>
                 </div>
             </div>
             <div class="text-center mt-8 text-gray-400">
