@@ -5,8 +5,7 @@ $current_page = $current_page ?? '';
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php include '../includes/meta.php'; ?>
     <title><?php echo htmlspecialchars($page_title); ?></title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
