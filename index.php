@@ -26,6 +26,9 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶ';
         .card-bi {
             background: linear-gradient(135deg, #059669 0%, #10b981 100%);
         }
+        .card-automation {
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+        }
         .hover-scale {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -49,6 +52,7 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶ';
                 <span class="bg-white/20 px-3 py-2 rounded-full text-sm">マーケティング</span>
                 <span class="bg-white/20 px-3 py-2 rounded-full text-sm">営業・セールス</span>
                 <span class="bg-white/20 px-3 py-2 rounded-full text-sm">データ分析・BI</span>
+                <span class="bg-white/20 px-3 py-2 rounded-full text-sm">業務自動化</span>
             </div>
         </div>
     </section>
@@ -56,7 +60,7 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶ';
     <!-- コース選択 -->
     <section class="py-20 -mt-12">
         <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-7xl mx-auto">
                 <!-- ホームページ制作コース -->
                 <a href="hp/" class="block hover-scale">
                     <div class="card-hp text-white rounded-2xl overflow-hidden shadow-xl h-full">
@@ -231,6 +235,41 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶ';
                         </div>
                     </div>
                 </a>
+
+                <!-- 業務自動化コース -->
+                <a href="process-auto/" class="block hover-scale">
+                    <div class="card-automation text-white rounded-2xl overflow-hidden shadow-xl h-full">
+                        <div class="p-6">
+                            <div class="text-5xl mb-3">⚡</div>
+                            <h2 class="text-2xl font-bold mb-3">AI×業務自動化</h2>
+                            <p class="text-sm opacity-90 mb-4">AIで面倒な作業を自動化する</p>
+                            <div class="space-y-2 text-sm opacity-80">
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    自動化の基礎・計画
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    Zapier・Make活用
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    メール・ドキュメント自動化
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white/20 px-6 py-3 flex justify-between items-center">
+                            <span class="font-bold text-sm">初心者向け / 14レッスン</span>
+                            <span class="bg-white text-violet-600 px-3 py-1 rounded-full font-bold text-xs">始める →</span>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
@@ -304,6 +343,13 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶ';
                         <p class="text-sm text-gray-600">AIでデータを活用し、意思決定の質を高めたい方</p>
                     </div>
                 </div>
+                <div class="bg-white p-6 rounded-lg shadow flex items-start">
+                    <div class="text-green-500 text-2xl mr-4">✓</div>
+                    <div>
+                        <h3 class="font-bold mb-1">業務効率化を図りたい方</h3>
+                        <p class="text-sm text-gray-600">繰り返し作業を自動化して生産性を上げたい方</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -329,6 +375,9 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶ';
                 <a href="bi/" class="inline-block bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2 rounded-lg font-bold text-sm transition">
                     データ分析・BI
                 </a>
+                <a href="process-auto/" class="inline-block bg-violet-500 hover:bg-violet-600 text-white px-5 py-2 rounded-lg font-bold text-sm transition">
+                    業務自動化
+                </a>
             </div>
         </div>
     </section>
@@ -344,6 +393,7 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶ';
                     <a href="marketing/" class="hover:text-gray-300">マーケティング</a>
                     <a href="sales/" class="hover:text-gray-300">営業・セールス</a>
                     <a href="bi/" class="hover:text-gray-300">データ分析・BI</a>
+                    <a href="process-auto/" class="hover:text-gray-300">業務自動化</a>
                 </div>
             </div>
             <div class="text-center mt-8 text-gray-400">
