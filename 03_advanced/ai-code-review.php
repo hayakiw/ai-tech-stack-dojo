@@ -1,0 +1,125 @@
+<?php
+$page_title = 'AIコードレビュー - AI駆動開発 上級編 | AI Tech Stack';
+$current_page = 'testing';
+$extra_styles = '.code-block { background: #1e293b; color: #e2e8f0; }\n        .prompt-box { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #f59e0b; }';
+$section_name = '第5部：AIとテスト・品質管理';
+$step_number = 17;
+$total_steps = 36;
+
+include 'includes/header.php';
+include 'includes/progress.php';
+?>
+    <main class="container mx-auto px-6 py-12 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">AIコードレビュー</h1>
+
+        <div class="bg-orange-50 border-l-4 border-orange-500 p-6 mb-8">
+            <p class="text-lg">AIにコードレビューを依頼し、品質向上とナレッジ共有を効率化します。PRの自動レビューも可能です。</p>
+        </div>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-orange-200">レビュー依頼のプロンプト</h2>
+
+            <div class="prompt-box p-4 rounded mb-6">
+                <h4 class="font-bold mb-2">観点を指定したレビュー</h4>
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>以下のコードをレビューしてください。
+
+【レビュー観点】
+1. セキュリティ（SQLインジェクション、XSS等）
+2. パフォーマンス（N+1、不要なループ）
+3. 可読性（命名、関数の長さ）
+4. エラーハンドリング
+5. テスト容易性
+
+問題があれば、重要度（高/中/低）と修正案を示してください。
+
+```python
+(コードを貼り付け)
+```</pre>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h3 class="font-bold mb-3">レビュー結果例</h3>
+                <div class="space-y-3 text-sm">
+                    <div class="p-3 bg-red-50 rounded border-l-4 border-red-500">
+                        <span class="font-bold text-red-600">[高] SQLインジェクション</span>
+                        <p>12行目: f-stringでSQL構築は危険です。パラメータ化クエリを使用してください。</p>
+                    </div>
+                    <div class="p-3 bg-yellow-50 rounded border-l-4 border-yellow-500">
+                        <span class="font-bold text-yellow-600">[中] N+1クエリ</span>
+                        <p>25行目: ループ内でDBアクセス。joinedloadで事前読み込みを推奨。</p>
+                    </div>
+                    <div class="p-3 bg-blue-50 rounded border-l-4 border-blue-500">
+                        <span class="font-bold text-blue-600">[低] 命名</span>
+                        <p>変数名 `d` は曖昧。`user_data` など意味のある名前に。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-orange-200">PRの自動レビュー（GitHub Actions）</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h3 class="font-bold mb-3">設定例</h3>
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre># .github/workflows/ai-review.yml
+name: AI Code Review
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Get diff
+        run: git diff origin/main > diff.txt
+      - name: AI Review
+        run: |
+          # Claude API を呼び出してレビュー
+          # 結果をPRコメントとして投稿</pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-orange-200">Claude Code でのレビュー</h2>
+            <div class="bg-white p-6 rounded-lg shadow">
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre># 差分をレビュー
+> git diff main | このコードの変更をレビューしてください
+
+# 特定ファイルをレビュー
+> @src/services/user.py このファイルをレビューしてください</pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-orange-200">まとめ</h2>
+            <div class="bg-orange-50 p-6 rounded-lg">
+                <ul class="space-y-3">
+                    <li class="flex items-start"><span class="text-orange-600 mr-2">✓</span><span><strong>観点を明示</strong> - セキュリティ、パフォーマンス等を指定</span></li>
+                    <li class="flex items-start"><span class="text-orange-600 mr-2">✓</span><span><strong>重要度を付ける</strong> - 優先順位を明確に</span></li>
+                    <li class="flex items-start"><span class="text-orange-600 mr-2">✓</span><span><strong>CI連携</strong> - PR時に自動レビュー</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="flex justify-between items-center pt-8 border-t">
+            <a href="e2e-testing.php" class="flex items-center text-gray-600 hover:text-orange-600">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                E2Eテストの自動生成
+            </a>
+            <a href="ai-debugging.php" class="flex items-center bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600">
+                次へ：バグ修正の効率化
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </a>
+        </div>
+    </main>
+
+    
+<?php include 'includes/footer.php'; ?>

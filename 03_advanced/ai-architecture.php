@@ -1,0 +1,326 @@
+<?php
+$page_title = 'AIに設計を相談する - AI駆動開発 上級編 | AI Tech Stack';
+$current_page = 'architecture';
+$section_name = '第2部：AIとアーキテクチャ設計';
+$step_number = 5;
+$total_steps = 36;
+$extra_styles = '
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+        }
+        .prompt-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid #f59e0b;
+        }';
+
+include 'includes/header.php';
+include 'includes/progress.php';
+?>
+
+    <!-- メインコンテンツ -->
+    <main class="container mx-auto px-6 py-12 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">AIに設計を相談する</h1>
+
+        <!-- イントロ -->
+        <div class="bg-orange-50 border-l-4 border-orange-500 p-6 mb-8">
+            <p class="text-lg">アーキテクチャの選択は重要な決定です。AIに選択肢を提案させ、トレードオフを議論することで、より良い設計判断ができます。</p>
+        </div>
+
+        <!-- 設計相談の基本 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-orange-200">AIへの設計相談の基本</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow mb-6">
+                <h3 class="font-bold mb-4">効果的な相談の流れ</h3>
+                <div class="space-y-3">
+                    <div class="flex items-start">
+                        <span class="bg-orange-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 flex-shrink-0">1</span>
+                        <div>
+                            <span class="font-bold">要件と制約を伝える</span>
+                            <p class="text-sm text-gray-600">何を作りたいか、技術的な制約は何か</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-orange-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 flex-shrink-0">2</span>
+                        <div>
+                            <span class="font-bold">選択肢を提案させる</span>
+                            <p class="text-sm text-gray-600">複数のアプローチを比較検討</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-orange-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 flex-shrink-0">3</span>
+                        <div>
+                            <span class="font-bold">トレードオフを議論する</span>
+                            <p class="text-sm text-gray-600">各選択肢のメリット・デメリットを確認</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-orange-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 flex-shrink-0">4</span>
+                        <div>
+                            <span class="font-bold">決定し、詳細設計に進む</span>
+                            <p class="text-sm text-gray-600">選んだ方針に基づいて具体化</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 実践例1：技術選定 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-orange-200">実践例1：技術選定の相談</h2>
+
+            <div class="prompt-box p-4 rounded mb-6">
+                <h4 class="font-bold mb-2">状態管理ライブラリの選定</h4>
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>Next.js 14 (App Router) でプロジェクト管理ツールを作っています。
+状態管理ライブラリを選定したいです。
+
+【要件】
+- タスク一覧、プロジェクト一覧などのデータをキャッシュしたい
+- 複数のコンポーネント間でデータを共有したい
+- サーバーからのデータとクライアントの状態を区別したい
+- チームメンバーが学習しやすいものが良い
+
+【候補】
+1. React Context + useState
+2. Zustand
+3. Jotai
+4. TanStack Query (React Query)
+
+それぞれのメリット・デメリットと、おすすめを教えてください。</pre>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow mb-6">
+                <h3 class="font-bold mb-3">AIの回答を受けて深掘り</h3>
+                <div class="space-y-2 text-sm">
+                    <p class="p-2 bg-gray-50 rounded">「TanStack Queryを推奨されましたが、オフライン対応も必要になるかもしれません。その場合でも対応できますか？」</p>
+                    <p class="p-2 bg-gray-50 rounded">「ZustandとTanStack Queryを組み合わせる場合、どのように使い分けますか？」</p>
+                    <p class="p-2 bg-gray-50 rounded">「学習コストが低いのはどれですか？チームに React 初心者がいます」</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 実践例2：アーキテクチャ選択 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-orange-200">実践例2：アーキテクチャパターンの選択</h2>
+
+            <div class="prompt-box p-4 rounded mb-6">
+                <h4 class="font-bold mb-2">バックエンドのアーキテクチャ相談</h4>
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>FastAPI でバックエンドを構築しています。
+現在は以下のような構造ですが、コードが複雑になってきました。
+
+現在の構造:
+app/
+├── main.py
+├── api/
+│   └── endpoints/  # 全てのロジックがここに
+├── models/
+└── schemas/
+
+【課題】
+- エンドポイントのファイルが肥大化（500行超え）
+- テストが書きにくい
+- ビジネスロジックとDBアクセスが混在
+
+【質問】
+1. どのようなアーキテクチャパターンが適切ですか？
+2. リポジトリパターン、サービス層の導入は有効ですか？
+3. 具体的なフォルダ構成を提案してください</pre>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow mb-6">
+                <h3 class="font-bold mb-3">提案される構成例</h3>
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>app/
+├── main.py
+├── api/
+│   └── v1/
+│       ├── endpoints/      # ルーティングのみ
+│       │   ├── tasks.py
+│       │   └── users.py
+│       └── dependencies.py # 依存性注入
+├── services/               # ビジネスロジック
+│   ├── task_service.py
+│   └── user_service.py
+├── repositories/           # データアクセス
+│   ├── task_repository.py
+│   └── user_repository.py
+├── models/                 # SQLAlchemyモデル
+├── schemas/                # Pydanticスキーマ
+└── core/                   # 設定、例外など
+    ├── config.py
+    └── exceptions.py</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- 実践例3：設計判断 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-orange-200">実践例3：設計上の判断を相談</h2>
+
+            <div class="prompt-box p-4 rounded mb-6">
+                <h4 class="font-bold mb-2">リアルタイム機能の実装方法</h4>
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>プロジェクト管理ツールにリアルタイム同期機能を追加したいです。
+複数ユーザーが同時にタスクボードを見ているとき、
+誰かがタスクを移動したら全員の画面に反映させたいです。
+
+【技術スタック】
+- Frontend: Next.js 14
+- Backend: FastAPI
+- DB: MySQL
+- インフラ: AWS (予定)
+
+【検討している方法】
+1. WebSocket
+2. Server-Sent Events (SSE)
+3. ポーリング
+4. Firebase Realtime Database
+
+【考慮事項】
+- 同時接続数は最大100人程度
+- コスト を抑えたい
+- 既存の FastAPI サーバーを活かしたい
+
+最適なアプローチを提案してください。</pre>
+                </div>
+            </div>
+
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+                <p><strong>ポイント：</strong>AIの提案を鵜呑みにせず、「なぜその選択が良いのか」「他の選択肢と比べてどう違うのか」を必ず確認しましょう。</p>
+            </div>
+        </section>
+
+        <!-- 設計ドキュメントの作成 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-orange-200">AIと設計ドキュメントを作る</h2>
+
+            <p class="mb-4">設計が決まったら、ドキュメント化もAIに手伝ってもらいましょう。</p>
+
+            <div class="prompt-box p-4 rounded mb-6">
+                <h4 class="font-bold mb-2">アーキテクチャ決定記録（ADR）の作成</h4>
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>今の議論を基に、アーキテクチャ決定記録（ADR）を作成してください。
+
+フォーマット:
+# ADR-001: [タイトル]
+
+## ステータス
+承認済み / 提案中 / 廃止
+
+## コンテキスト
+なぜこの決定が必要になったか
+
+## 決定
+何を決定したか
+
+## 選択肢
+検討した選択肢とその評価
+
+## 結果
+この決定によって予想される影響</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- 注意点 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-orange-200">設計相談の注意点</h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="font-bold text-green-600 mb-3">やるべきこと</h3>
+                    <ul class="text-sm space-y-2">
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">○</span>
+                            <span>制約条件を明確に伝える</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">○</span>
+                            <span>複数の選択肢を比較させる</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">○</span>
+                            <span>トレードオフを明確にさせる</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">○</span>
+                            <span>最終決定は人間が行う</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="font-bold text-red-600 mb-3">避けるべきこと</h3>
+                    <ul class="text-sm space-y-2">
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2">✗</span>
+                            <span>AIの提案を無批判に採用</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2">✗</span>
+                            <span>制約を伝えずに質問</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2">✗</span>
+                            <span>「最良」を求めすぎる（正解は一つではない）</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2">✗</span>
+                            <span>将来の変更可能性を無視</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- まとめ -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-orange-200">まとめ</h2>
+            <div class="bg-orange-50 p-6 rounded-lg">
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <span class="text-orange-600 mr-2">✓</span>
+                        <span><strong>要件と制約を明確に</strong> - AIが適切な提案をするための前提情報</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-orange-600 mr-2">✓</span>
+                        <span><strong>複数の選択肢を比較</strong> - 一つの答えを求めず、選択肢を出させる</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-orange-600 mr-2">✓</span>
+                        <span><strong>トレードオフを理解</strong> - 各選択肢のメリット・デメリットを把握</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-orange-600 mr-2">✓</span>
+                        <span><strong>深掘り質問をする</strong> - 「なぜ？」「他の方法は？」と追加質問</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-orange-600 mr-2">✓</span>
+                        <span><strong>ドキュメント化する</strong> - 決定事項をADRなどで記録</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ナビゲーション -->
+        <div class="flex justify-between items-center pt-8 border-t">
+            <a href="ai-verification.php" class="flex items-center text-gray-600 hover:text-orange-600">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                AIの出力を検証する
+            </a>
+            <a href="clean-architecture.php" class="flex items-center bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600">
+                次へ：クリーンアーキテクチャをAIと実装
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+    </main>
+
+<?php include 'includes/footer.php'; ?>

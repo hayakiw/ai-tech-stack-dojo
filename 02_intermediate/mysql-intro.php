@@ -1,0 +1,327 @@
+<?php
+$page_title = 'MySQL入門 - AI×Web開発 中級編 | AI Tech Stack';
+$current_page = 'mysql';
+$extra_styles = '.code-block {\n            background: #1e293b;\n            color: #e2e8f0;\n        }';
+$section_name = '第3部：MySQL連携';
+$step_number = 8;
+$total_steps = 24;
+
+include 'includes/header.php';
+include 'includes/progress.php';
+?>
+    <!-- メインコンテンツ -->
+    <main class="container mx-auto px-6 py-12 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">MySQL入門</h1>
+
+        <!-- イントロ -->
+        <div class="bg-green-50 border-l-4 border-green-500 p-6 mb-8">
+            <p class="text-lg">MySQLは世界で最も使われているリレーショナルデータベース。Webアプリのデータを永続的に保存・管理します。</p>
+        </div>
+
+        <!-- MySQLとは -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-green-200">MySQLとは</h2>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="font-bold mb-3 text-green-600">特徴</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">○</span>
+                            <span>オープンソースで無料</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">○</span>
+                            <span>高速で信頼性が高い</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">○</span>
+                            <span>広く使われており情報が豊富</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">○</span>
+                            <span>クラウド対応（AWS RDS, Cloud SQL等）</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="font-bold mb-3 text-blue-600">SQLite との違い</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><span class="font-bold">SQLite:</span> ファイルベース、小規模向け</li>
+                        <li><span class="font-bold">MySQL:</span> サーバー型、大規模対応</li>
+                        <li class="text-gray-500 mt-2">→ 本番環境ではMySQLを使うことが多い</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dockerで起動 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-green-200">DockerでMySQLを起動</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow mb-6">
+                <h3 class="font-bold mb-4">compose.yaml</h3>
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>services:
+  db:
+    image: mysql:8.0
+    container_name: my-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: myapp
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:</pre>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h3 class="font-bold mb-4">起動と接続</h3>
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre># 起動
+docker compose up -d
+
+# MySQLに接続
+docker compose exec db mysql -umyuser -pmypassword myapp
+
+# または root で接続
+docker compose exec db mysql -uroot -prootpassword</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- SQL基本 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-green-200">SQL基本操作</h2>
+
+            <div class="space-y-6">
+                <!-- データベース操作 -->
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="font-bold mb-4 text-blue-600">データベース操作</h3>
+                    <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>-- データベース一覧
+SHOW DATABASES;
+
+-- データベース作成
+CREATE DATABASE blog;
+
+-- データベース選択
+USE blog;
+
+-- 現在のデータベース確認
+SELECT DATABASE();</pre>
+                    </div>
+                </div>
+
+                <!-- テーブル作成 -->
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="font-bold mb-4 text-green-600">テーブル作成（CREATE）</h3>
+                    <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>-- usersテーブル
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    name VARCHAR(100) NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- postsテーブル
+CREATE TABLE posts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    content TEXT NOT NULL,
+    author_id INT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (author_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- テーブル一覧
+SHOW TABLES;
+
+-- テーブル構造確認
+DESCRIBE users;</pre>
+                    </div>
+                </div>
+
+                <!-- データ挿入 -->
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="font-bold mb-4 text-purple-600">データ挿入（INSERT）</h3>
+                    <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>-- ユーザー追加
+INSERT INTO users (email, name, password_hash)
+VALUES ('yamada@example.com', '山田太郎', 'hashed_password_here');
+
+-- 複数行追加
+INSERT INTO users (email, name, password_hash) VALUES
+    ('tanaka@example.com', '田中花子', 'hash1'),
+    ('suzuki@example.com', '鈴木一郎', 'hash2');
+
+-- 記事追加
+INSERT INTO posts (title, content, author_id)
+VALUES ('はじめての投稿', 'これは最初の記事です。', 1);</pre>
+                    </div>
+                </div>
+
+                <!-- データ取得 -->
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="font-bold mb-4 text-cyan-600">データ取得（SELECT）</h3>
+                    <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>-- すべてのユーザー取得
+SELECT * FROM users;
+
+-- 特定のカラムのみ
+SELECT id, name, email FROM users;
+
+-- 条件付き検索
+SELECT * FROM users WHERE email = 'yamada@example.com';
+
+-- 並び替え
+SELECT * FROM posts ORDER BY created_at DESC;
+
+-- 件数制限
+SELECT * FROM posts ORDER BY created_at DESC LIMIT 10;
+
+-- JOINで関連データ取得
+SELECT posts.*, users.name as author_name
+FROM posts
+JOIN users ON posts.author_id = users.id;</pre>
+                    </div>
+                </div>
+
+                <!-- データ更新 -->
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="font-bold mb-4 text-orange-600">データ更新（UPDATE）</h3>
+                    <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>-- ユーザー名を更新
+UPDATE users SET name = '山田次郎' WHERE id = 1;
+
+-- 複数カラム更新
+UPDATE posts
+SET title = '更新後のタイトル', content = '更新後の本文'
+WHERE id = 1;</pre>
+                    </div>
+                    <div class="bg-yellow-50 p-3 rounded mt-3">
+                        <p class="text-sm text-yellow-700"><strong>注意：</strong>WHERE句を忘れると全件更新されます！</p>
+                    </div>
+                </div>
+
+                <!-- データ削除 -->
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="font-bold mb-4 text-red-600">データ削除（DELETE）</h3>
+                    <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>-- 特定の記事を削除
+DELETE FROM posts WHERE id = 1;
+
+-- ユーザーを削除（関連する記事も削除される）
+DELETE FROM users WHERE id = 1;</pre>
+                    </div>
+                    <div class="bg-red-50 p-3 rounded mt-3">
+                        <p class="text-sm text-red-700"><strong>注意：</strong>WHERE句を忘れると全件削除されます！</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- よく使う関数 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-green-200">よく使う関数</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>-- 件数をカウント
+SELECT COUNT(*) FROM posts;
+
+-- 条件付きカウント
+SELECT COUNT(*) FROM posts WHERE author_id = 1;
+
+-- 現在日時
+SELECT NOW();
+
+-- 日付のフォーマット
+SELECT DATE_FORMAT(created_at, '%Y年%m月%d日') FROM posts;
+
+-- LIKE検索（部分一致）
+SELECT * FROM posts WHERE title LIKE '%入門%';
+
+-- IN句
+SELECT * FROM users WHERE id IN (1, 2, 3);
+
+-- BETWEEN
+SELECT * FROM posts WHERE created_at BETWEEN '2024-01-01' AND '2024-12-31';</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- インデックス -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-green-200">インデックス（高速化）</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <p class="mb-4">よく検索するカラムにインデックスを付けると検索が速くなります。</p>
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>-- インデックス作成
+CREATE INDEX idx_posts_author_id ON posts(author_id);
+CREATE INDEX idx_posts_created_at ON posts(created_at DESC);
+
+-- 複合インデックス
+CREATE INDEX idx_posts_author_created ON posts(author_id, created_at);
+
+-- インデックス一覧
+SHOW INDEX FROM posts;</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- まとめ -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-green-200">まとめ</h2>
+            <div class="bg-green-50 p-6 rounded-lg">
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <span class="text-green-600 mr-2">✓</span>
+                        <span>MySQLはサーバー型の本格的なデータベース</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-green-600 mr-2">✓</span>
+                        <span>CRUD: CREATE, SELECT, UPDATE, DELETE</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-green-600 mr-2">✓</span>
+                        <span>WHERE句を忘れない（全件操作を防ぐ）</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-green-600 mr-2">✓</span>
+                        <span>よく検索するカラムにはインデックスを付ける</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ナビゲーション -->
+        <div class="flex justify-between items-center pt-8 border-t">
+            <a href="docker-compose.php" class="flex items-center text-gray-600 hover:text-green-600">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Docker Compose
+            </a>
+            <a href="fastapi-mysql.php" class="flex items-center bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700">
+                次へ：FastAPI + MySQL
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+    </main>
+
+    
+<?php include 'includes/footer.php'; ?>

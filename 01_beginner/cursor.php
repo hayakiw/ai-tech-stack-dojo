@@ -1,0 +1,270 @@
+<?php
+$page_title = 'Cursorの使い方 - AIでWebアプリ開発を学ぼう | AI Tech Stack';
+$current_page = 'setup';
+$extra_styles = '.code-block {\n            background: #1e293b;\n            color: #e2e8f0;\n        }';
+$section_name = '第2部：開発環境とAIツール';
+$step_number = 9;
+$total_steps = 20;
+
+include 'includes/header.php';
+include 'includes/progress.php';
+?>
+    <!-- メインコンテンツ -->
+    <main class="container mx-auto px-6 py-12 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">Cursorの使い方</h1>
+
+        <!-- イントロ -->
+        <div class="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
+            <p class="text-lg">CursorはAI機能が組み込まれたコードエディタです。VS Codeをベースにしており、使い慣れた操作感でAIを活用できます。</p>
+        </div>
+
+        <!-- Cursorとは -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-blue-200">Cursorとは</h2>
+
+            <div class="grid md:grid-cols-2 gap-4 mb-6">
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <h3 class="font-bold mb-2 text-purple-600">特徴</h3>
+                    <ul class="list-disc list-inside text-sm space-y-1">
+                        <li>VS Codeベースのエディタ</li>
+                        <li>AIチャット機能内蔵</li>
+                        <li>コード補完が超強力</li>
+                        <li>GUIでファイル管理しやすい</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <h3 class="font-bold mb-2 text-green-600">できること</h3>
+                    <ul class="list-disc list-inside text-sm space-y-1">
+                        <li>AIとチャットしながら開発</li>
+                        <li>コードの一部を選択して修正依頼</li>
+                        <li>プロジェクト全体を把握した回答</li>
+                        <li>コード補完（Tab補完）</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- インストール -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-blue-200">インストール方法</h2>
+
+            <ol class="list-decimal list-inside space-y-4 mb-6">
+                <li class="bg-white p-4 rounded-lg shadow">
+                    <a href="https://cursor.sh/" class="text-blue-600 hover:underline font-bold" target="_blank">Cursor公式サイト</a>にアクセス
+                </li>
+                <li class="bg-white p-4 rounded-lg shadow">
+                    「Download」をクリック（OSを自動判別）
+                </li>
+                <li class="bg-white p-4 rounded-lg shadow">
+                    ダウンロードしたファイルを実行してインストール
+                </li>
+                <li class="bg-white p-4 rounded-lg shadow">
+                    アカウントを作成してログイン
+                </li>
+            </ol>
+
+            <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4">
+                <p><strong>VS Codeの設定を引き継ぐ：</strong>初回起動時に「Import VS Code settings」を選ぶと、VS Codeの設定や拡張機能を引き継げます。</p>
+            </div>
+        </section>
+
+        <!-- 基本機能 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-blue-200">基本的な使い方</h2>
+
+            <div class="space-y-6">
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-xl font-bold mb-4 text-purple-600">1. Composer（Cmd/Ctrl + I）</h3>
+                    <p class="mb-3">大きな変更や新しいコードを生成するときに使います。</p>
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <p class="text-sm font-bold mb-2">使い方：</p>
+                        <ol class="list-decimal list-inside text-sm space-y-1">
+                            <li><kbd class="bg-gray-200 px-2 py-1 rounded">Cmd + I</kbd>（Mac）または <kbd class="bg-gray-200 px-2 py-1 rounded">Ctrl + I</kbd>（Windows）を押す</li>
+                            <li>作りたいものを入力（例：「ログインフォームを作成して」）</li>
+                            <li>Enterで送信</li>
+                            <li>生成されたコードを確認して「Accept」</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-xl font-bold mb-4 text-green-600">2. インライン編集（Cmd/Ctrl + K）</h3>
+                    <p class="mb-3">コードの一部を選択して、その部分だけ修正するときに使います。</p>
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <p class="text-sm font-bold mb-2">使い方：</p>
+                        <ol class="list-decimal list-inside text-sm space-y-1">
+                            <li>修正したいコードを選択</li>
+                            <li><kbd class="bg-gray-200 px-2 py-1 rounded">Cmd + K</kbd>（Mac）または <kbd class="bg-gray-200 px-2 py-1 rounded">Ctrl + K</kbd>（Windows）を押す</li>
+                            <li>修正内容を入力（例：「この関数にエラーハンドリングを追加」）</li>
+                            <li>提案を確認して採用/却下</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-xl font-bold mb-4 text-blue-600">3. チャット（Cmd/Ctrl + L）</h3>
+                    <p class="mb-3">コードについて質問したり、アドバイスを求めるときに使います。</p>
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <p class="text-sm font-bold mb-2">使い方：</p>
+                        <ol class="list-decimal list-inside text-sm space-y-1">
+                            <li><kbd class="bg-gray-200 px-2 py-1 rounded">Cmd + L</kbd>（Mac）または <kbd class="bg-gray-200 px-2 py-1 rounded">Ctrl + L</kbd>（Windows）でチャットパネルを開く</li>
+                            <li>質問を入力（例：「このエラーの原因は？」）</li>
+                            <li>@を使ってファイルを参照可能（例：@page.tsx）</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-xl font-bold mb-4 text-orange-600">4. Tab補完</h3>
+                    <p class="mb-3">コードを書いているときに、AIが次のコードを予測して提案します。</p>
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <p class="text-sm font-bold mb-2">使い方：</p>
+                        <ul class="list-disc list-inside text-sm space-y-1">
+                            <li>普通にコードを書いていると、薄い文字で候補が表示される</li>
+                            <li><kbd class="bg-gray-200 px-2 py-1 rounded">Tab</kbd>で採用</li>
+                            <li>無視してそのまま入力を続けてもOK</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- キーボードショートカット -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-blue-200">よく使うショートカット</h2>
+
+            <div class="bg-white p-4 rounded-lg shadow overflow-x-auto">
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="p-3">機能</th>
+                            <th class="p-3">Mac</th>
+                            <th class="p-3">Windows</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b">
+                            <td class="p-3">Composer</td>
+                            <td class="p-3 font-mono">Cmd + I</td>
+                            <td class="p-3 font-mono">Ctrl + I</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3">インライン編集</td>
+                            <td class="p-3 font-mono">Cmd + K</td>
+                            <td class="p-3 font-mono">Ctrl + K</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3">チャット</td>
+                            <td class="p-3 font-mono">Cmd + L</td>
+                            <td class="p-3 font-mono">Ctrl + L</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3">ターミナル</td>
+                            <td class="p-3 font-mono">Cmd + `</td>
+                            <td class="p-3 font-mono">Ctrl + `</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3">ファイル検索</td>
+                            <td class="p-3 font-mono">Cmd + P</td>
+                            <td class="p-3 font-mono">Ctrl + P</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 得意・苦手 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-blue-200">得意なこと・苦手なこと</h2>
+
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-green-50 p-4 rounded-lg">
+                    <h3 class="font-bold mb-3 text-green-700">得意なこと</h3>
+                    <ul class="list-disc list-inside text-sm space-y-2">
+                        <li>GUIでのファイル操作</li>
+                        <li>コードの部分的な修正</li>
+                        <li>強力なコード補完</li>
+                        <li>既存コードの理解と説明</li>
+                        <li>VS Codeと同じ使い勝手</li>
+                    </ul>
+                </div>
+                <div class="bg-red-50 p-4 rounded-lg">
+                    <h3 class="font-bold mb-3 text-red-700">苦手なこと</h3>
+                    <ul class="list-disc list-inside text-sm space-y-2">
+                        <li>コマンドの自動実行</li>
+                        <li>複数ファイルの同時大量変更</li>
+                        <li>プロジェクト構成の変更</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 使い分け -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-blue-200">Claude CodeとCursorの使い分け</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow overflow-x-auto">
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="p-3">やりたいこと</th>
+                            <th class="p-3">おすすめツール</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b">
+                            <td class="p-3">プロジェクトを新規作成</td>
+                            <td class="p-3"><span class="bg-purple-100 text-purple-700 px-2 py-1 rounded">Claude Code</span></td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3">複数ファイルにまたがる大きな変更</td>
+                            <td class="p-3"><span class="bg-purple-100 text-purple-700 px-2 py-1 rounded">Claude Code</span></td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3">npmコマンドの実行</td>
+                            <td class="p-3"><span class="bg-purple-100 text-purple-700 px-2 py-1 rounded">Claude Code</span></td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3">1つのファイルの修正</td>
+                            <td class="p-3"><span class="bg-blue-100 text-blue-700 px-2 py-1 rounded">Cursor</span></td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3">コードを見ながら修正</td>
+                            <td class="p-3"><span class="bg-blue-100 text-blue-700 px-2 py-1 rounded">Cursor</span></td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3">コードの理解・質問</td>
+                            <td class="p-3"><span class="bg-blue-100 text-blue-700 px-2 py-1 rounded">Cursor</span></td>
+                        </tr>
+                        <tr>
+                            <td class="p-3">細かいスタイル調整</td>
+                            <td class="p-3"><span class="bg-blue-100 text-blue-700 px-2 py-1 rounded">Cursor</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-6 p-4 bg-yellow-50 border-l-4 border-yellow-500 rounded">
+                <p><strong>おすすめの使い方：</strong>Claude Codeで大枠を作成し、Cursorで細かい修正を行う、という組み合わせが効率的です。</p>
+            </div>
+        </section>
+
+        <!-- ナビゲーション -->
+        <div class="flex justify-between items-center pt-8 border-t">
+            <a href="claude-code.php" class="flex items-center text-gray-600 hover:text-blue-600">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                前へ：Claude Codeの使い方
+            </a>
+            <a href="prompting.php" class="flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">
+                次へ：AIへの指示の出し方
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+    </main>
+
+    
+<?php include 'includes/footer.php'; ?>

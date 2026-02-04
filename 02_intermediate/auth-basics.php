@@ -1,0 +1,264 @@
+<?php
+$page_title = '認証の基礎 - AI×Web開発 中級編 | AI Tech Stack';
+$current_page = 'auth';
+$extra_styles = '.code-block {\n            background: #1e293b;\n            color: #e2e8f0;\n        }';
+$section_name = '第4部：認証機能';
+$step_number = 11;
+$total_steps = 24;
+
+include 'includes/header.php';
+include 'includes/progress.php';
+?>
+    <!-- メインコンテンツ -->
+    <main class="container mx-auto px-6 py-12 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">認証の基礎</h1>
+
+        <!-- イントロ -->
+        <div class="bg-purple-50 border-l-4 border-purple-500 p-6 mb-8">
+            <p class="text-lg">認証（Authentication）は「誰がアクセスしているか」を確認する仕組み。JWT（JSON Web Token）を使った現代的な認証方式を学びます。</p>
+        </div>
+
+        <!-- 認証と認可 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-purple-200">認証と認可の違い</h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="font-bold mb-3 text-purple-600">認証（Authentication）</h3>
+                    <p class="text-sm mb-3">「あなたは誰ですか？」を確認</p>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li>・ログイン処理</li>
+                        <li>・ユーザーIDの特定</li>
+                        <li>・パスワード/トークン検証</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="font-bold mb-3 text-blue-600">認可（Authorization）</h3>
+                    <p class="text-sm mb-3">「あなたは何ができますか？」を確認</p>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li>・アクセス権限チェック</li>
+                        <li>・自分の記事のみ編集可能</li>
+                        <li>・管理者のみ削除可能</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 認証方式の比較 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-purple-200">認証方式の比較</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead class="bg-purple-50">
+                        <tr>
+                            <th class="p-3 text-left">方式</th>
+                            <th class="p-3 text-left">特徴</th>
+                            <th class="p-3 text-left">用途</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b">
+                            <td class="p-3 font-bold">セッション</td>
+                            <td class="p-3">サーバーに状態を保持、Cookieで管理</td>
+                            <td class="p-3">従来のWebアプリ</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-bold text-purple-600">JWT</td>
+                            <td class="p-3">トークンに情報を含む、ステートレス</td>
+                            <td class="p-3">SPA、モバイル、API</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-bold">OAuth 2.0</td>
+                            <td class="p-3">外部サービスで認証（Google, GitHub等）</td>
+                            <td class="p-3">ソーシャルログイン</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mt-6">
+                <p><strong>このコースでは：</strong>APIに適したJWT認証を実装します。</p>
+            </div>
+        </section>
+
+        <!-- JWT とは -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-purple-200">JWT（JSON Web Token）とは</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow mb-6">
+                <h3 class="font-bold mb-4">JWTの構造</h3>
+                <div class="bg-gray-100 p-4 rounded font-mono text-xs break-all">
+                    <span class="text-red-500">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</span>.<span class="text-green-500">eyJ1c2VyX2lkIjoxLCJleHAiOjE3MDU0MTIwMDB9</span>.<span class="text-blue-500">SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</span>
+                </div>
+                <div class="mt-4 space-y-2">
+                    <p class="text-sm"><span class="text-red-500 font-bold">Header:</span> アルゴリズム情報</p>
+                    <p class="text-sm"><span class="text-green-500 font-bold">Payload:</span> ユーザー情報、有効期限など</p>
+                    <p class="text-sm"><span class="text-blue-500 font-bold">Signature:</span> 改ざん検知用の署名</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h3 class="font-bold mb-4">Payloadの例</h3>
+                <div class="code-block p-4 rounded font-mono text-sm">
+<pre>{
+  "user_id": 1,
+  "email": "user@example.com",
+  "exp": 1705412000,  // 有効期限
+  "iat": 1705325600   // 発行日時
+}</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- 認証フロー -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-purple-200">JWT認証のフロー</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <div class="space-y-6">
+                    <div class="flex items-start gap-4">
+                        <span class="bg-purple-100 text-purple-700 w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0">1</span>
+                        <div>
+                            <p class="font-bold">ログインリクエスト</p>
+                            <p class="text-sm text-gray-600">クライアント → サーバー: email, password を送信</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <span class="bg-purple-100 text-purple-700 w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0">2</span>
+                        <div>
+                            <p class="font-bold">認証処理</p>
+                            <p class="text-sm text-gray-600">サーバー: パスワードをハッシュと照合、JWTを生成</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <span class="bg-purple-100 text-purple-700 w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0">3</span>
+                        <div>
+                            <p class="font-bold">トークン返却</p>
+                            <p class="text-sm text-gray-600">サーバー → クライアント: JWTトークンを返す</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <span class="bg-purple-100 text-purple-700 w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0">4</span>
+                        <div>
+                            <p class="font-bold">トークン保存</p>
+                            <p class="text-sm text-gray-600">クライアント: トークンをlocalStorageに保存</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <span class="bg-purple-100 text-purple-700 w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0">5</span>
+                        <div>
+                            <p class="font-bold">認証が必要なリクエスト</p>
+                            <p class="text-sm text-gray-600">クライアント → サーバー: Authorizationヘッダーにトークンを付与</p>
+                            <div class="code-block p-2 rounded font-mono text-xs mt-2">
+                                Authorization: Bearer eyJhbGciOiJ...
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <span class="bg-purple-100 text-purple-700 w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0">6</span>
+                        <div>
+                            <p class="font-bold">トークン検証</p>
+                            <p class="text-sm text-gray-600">サーバー: 署名を検証、有効期限を確認、ユーザー情報を取得</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- パスワードのハッシュ化 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-purple-200">パスワードのハッシュ化</h2>
+
+            <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-6">
+                <p><strong>絶対にやってはいけないこと：</strong>パスワードを平文（そのまま）でデータベースに保存しない！</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h3 class="font-bold mb-4">bcryptでハッシュ化</h3>
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>from passlib.context import CryptContext
+
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+# ハッシュ化（登録時）
+password = "user_password"
+hashed = pwd_context.hash(password)
+# → "$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW"
+
+# 検証（ログイン時）
+pwd_context.verify(password, hashed)  # True
+pwd_context.verify("wrong_password", hashed)  # False</pre>
+                </div>
+                <p class="text-sm text-gray-500 mt-3">bcryptは同じパスワードでも毎回異なるハッシュを生成（ソルト付き）</p>
+            </div>
+        </section>
+
+        <!-- セキュリティの注意点 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-purple-200">セキュリティの注意点</h2>
+
+            <div class="space-y-4">
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <h3 class="font-bold text-red-600 mb-2">SECRET_KEYを公開しない</h3>
+                    <p class="text-sm text-gray-600">JWTの署名に使う秘密鍵は環境変数で管理、Gitにコミットしない</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <h3 class="font-bold text-red-600 mb-2">トークンの有効期限を短くする</h3>
+                    <p class="text-sm text-gray-600">アクセストークンは15分〜1時間程度。リフレッシュトークンで更新</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <h3 class="font-bold text-red-600 mb-2">HTTPSを使用する</h3>
+                    <p class="text-sm text-gray-600">トークンが盗聴されないよう、本番環境では必ずHTTPS</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <h3 class="font-bold text-red-600 mb-2">XSS対策</h3>
+                    <p class="text-sm text-gray-600">localStorageに保存したトークンはXSS攻撃で盗まれる可能性。httpOnly Cookieの検討も</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- まとめ -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-purple-200">まとめ</h2>
+            <div class="bg-purple-50 p-6 rounded-lg">
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <span class="text-purple-600 mr-2">✓</span>
+                        <span>認証は「誰か」を確認、認可は「何ができるか」を確認</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-purple-600 mr-2">✓</span>
+                        <span>JWTはステートレスでAPI向きの認証方式</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-purple-600 mr-2">✓</span>
+                        <span>パスワードは必ずbcryptでハッシュ化</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-purple-600 mr-2">✓</span>
+                        <span>SECRET_KEYは絶対に公開しない</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ナビゲーション -->
+        <div class="flex justify-between items-center pt-8 border-t">
+            <a href="migration.php" class="flex items-center text-gray-600 hover:text-purple-600">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                マイグレーション
+            </a>
+            <a href="fastapi-auth.php" class="flex items-center bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700">
+                次へ：FastAPIで認証
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+    </main>
+
+    
+<?php include 'includes/footer.php'; ?>

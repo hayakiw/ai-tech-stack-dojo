@@ -1,0 +1,109 @@
+<?php
+$page_title = '要件定義 - 実践プロジェクト - AI駆動開発 上級編 | AI Tech Stack';
+$current_page = 'practice';
+$extra_styles = '.code-block { background: #1e293b; color: #e2e8f0; }\n        .prompt-box { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #f59e0b; }';
+$section_name = '第9部：実践プロジェクト';
+$step_number = 31;
+$total_steps = 36;
+
+include 'includes/header.php';
+include 'includes/progress.php';
+?>
+    <main class="container mx-auto px-6 py-12 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">実践プロジェクト：要件定義</h1>
+
+        <div class="bg-purple-50 border-l-4 border-purple-500 p-6 mb-8">
+            <p class="text-lg">リアルタイム同期対応のプロジェクト管理ツールを、AIと一緒に要件定義から構築します。</p>
+        </div>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-purple-200">プロジェクト概要</h2>
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h3 class="font-bold mb-4">作成するアプリ：TaskFlow</h3>
+                <p class="mb-4">カンバン形式のプロジェクト管理ツール。複数ユーザーがリアルタイムで共同作業できる。</p>
+                <div class="grid md:grid-cols-2 gap-4 text-sm">
+                    <div>
+                        <h4 class="font-bold mb-2">主要機能</h4>
+                        <ul class="space-y-1">
+                            <li>・カンバンボード（ドラッグ&ドロップ）</li>
+                            <li>・リアルタイム同期</li>
+                            <li>・チーム・メンバー管理</li>
+                            <li>・タスクのコメント</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold mb-2">技術スタック</h4>
+                        <ul class="space-y-1">
+                            <li>・Frontend: Next.js 14</li>
+                            <li>・Backend: FastAPI</li>
+                            <li>・DB: MySQL</li>
+                            <li>・リアルタイム: WebSocket</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-purple-200">AIと要件整理</h2>
+
+            <div class="prompt-box p-4 rounded mb-6">
+                <h4 class="font-bold mb-2">AIへの指示</h4>
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>プロジェクト管理ツール「TaskFlow」の要件を整理してください。
+
+【概要】
+カンバン形式のタスク管理。リアルタイム同期対応。
+
+【ユーザーストーリー】を洗い出してください
+【機能一覧】を優先度付きで作成してください
+【画面一覧】を作成してください
+【API一覧】を作成してください</pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-purple-200">機能一覧（MVP）</h2>
+            <div class="bg-white p-6 rounded-lg shadow overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="p-3 text-left">機能</th>
+                            <th class="p-3 text-left">説明</th>
+                            <th class="p-3 text-left">優先度</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b"><td class="p-3">ユーザー認証</td><td class="p-3">登録・ログイン</td><td class="p-3"><span class="bg-red-100 text-red-700 px-2 py-1 rounded">必須</span></td></tr>
+                        <tr class="border-b"><td class="p-3">プロジェクト作成</td><td class="p-3">ボードの作成・編集</td><td class="p-3"><span class="bg-red-100 text-red-700 px-2 py-1 rounded">必須</span></td></tr>
+                        <tr class="border-b"><td class="p-3">タスクCRUD</td><td class="p-3">作成・編集・削除</td><td class="p-3"><span class="bg-red-100 text-red-700 px-2 py-1 rounded">必須</span></td></tr>
+                        <tr class="border-b"><td class="p-3">ドラッグ&ドロップ</td><td class="p-3">タスクの移動</td><td class="p-3"><span class="bg-red-100 text-red-700 px-2 py-1 rounded">必須</span></td></tr>
+                        <tr class="border-b"><td class="p-3">リアルタイム同期</td><td class="p-3">WebSocketで即時反映</td><td class="p-3"><span class="bg-red-100 text-red-700 px-2 py-1 rounded">必須</span></td></tr>
+                        <tr><td class="p-3">コメント機能</td><td class="p-3">タスクへのコメント</td><td class="p-3"><span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded">Phase2</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-purple-200">次のステップ</h2>
+            <div class="bg-purple-50 p-6 rounded-lg">
+                <p>要件が整理できたら、次はアーキテクチャを設計します。AIと一緒に技術選定を行いましょう。</p>
+            </div>
+        </section>
+
+        <div class="flex justify-between items-center pt-8 border-t">
+            <a href="git-ai.php" class="flex items-center text-gray-600 hover:text-purple-600">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                Git操作の効率化
+            </a>
+            <a href="project-architecture.php" class="flex items-center bg-purple-500 text-white px-6 py-3 rounded-lg hover:bg-purple-600">
+                次へ：アーキテクチャ決定
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </a>
+        </div>
+    </main>
+
+    
+<?php include 'includes/footer.php'; ?>

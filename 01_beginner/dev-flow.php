@@ -1,0 +1,262 @@
+<?php
+$page_title = 'AIとの開発フロー - AIでWebアプリ開発を学ぼう | AI Tech Stack';
+$current_page = 'setup';
+$extra_styles = '.code-block {\n            background: #1e293b;\n            color: #e2e8f0;\n        }';
+$section_name = '第2部：開発環境とAIツール';
+$step_number = 11;
+$total_steps = 20;
+
+include 'includes/header.php';
+include 'includes/progress.php';
+?>
+    <!-- メインコンテンツ -->
+    <main class="container mx-auto px-6 py-12 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">AIとの開発フロー</h1>
+
+        <!-- イントロ -->
+        <div class="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
+            <p class="text-lg">AIを使った開発には「効率的な進め方」があります。このページでは、プロジェクトを始めてから完成までの流れを解説します。</p>
+        </div>
+
+        <!-- 開発の全体フロー -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-blue-200">開発の全体的な流れ</h2>
+
+            <div class="space-y-4">
+                <div class="flex items-start">
+                    <div class="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 flex-shrink-0">1</div>
+                    <div class="bg-white p-4 rounded-lg shadow flex-grow">
+                        <h3 class="font-bold text-purple-600">要件を整理する</h3>
+                        <p class="text-sm text-gray-600">何を作りたいか、どんな機能が必要かを明確にする</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 flex-shrink-0">2</div>
+                    <div class="bg-white p-4 rounded-lg shadow flex-grow">
+                        <h3 class="font-bold text-purple-600">AIに設計を相談する</h3>
+                        <p class="text-sm text-gray-600">どんな構成で作るか、どんなファイルが必要かを相談</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 flex-shrink-0">3</div>
+                    <div class="bg-white p-4 rounded-lg shadow flex-grow">
+                        <h3 class="font-bold text-green-600">バックエンド（API）を作る</h3>
+                        <p class="text-sm text-gray-600">FastAPIでデータの保存・取得などのAPIを作成</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 flex-shrink-0">4</div>
+                    <div class="bg-white p-4 rounded-lg shadow flex-grow">
+                        <h3 class="font-bold text-blue-600">フロントエンド（画面）を作る</h3>
+                        <p class="text-sm text-gray-600">Next.jsでユーザーが操作する画面を作成</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="bg-orange-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 flex-shrink-0">5</div>
+                    <div class="bg-white p-4 rounded-lg shadow flex-grow">
+                        <h3 class="font-bold text-orange-600">連携させる</h3>
+                        <p class="text-sm text-gray-600">フロントエンドからバックエンドのAPIを呼び出す</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="bg-pink-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 flex-shrink-0">6</div>
+                    <div class="bg-white p-4 rounded-lg shadow flex-grow">
+                        <h3 class="font-bold text-pink-600">動作確認・修正を繰り返す</h3>
+                        <p class="text-sm text-gray-600">実際に動かして問題があれば修正</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 要件の整理 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-blue-200">ステップ1: 要件の整理方法</h2>
+
+            <p class="mb-4">開発を始める前に、以下の質問に答えを用意しておきましょう。</p>
+
+            <div class="bg-white p-6 rounded-lg shadow mb-6">
+                <h3 class="font-bold mb-4 text-lg">チェックリスト</h3>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <span class="mr-2">□</span>
+                        <div>
+                            <p class="font-bold">何を作りたいか？</p>
+                            <p class="text-sm text-gray-600">例：Todoリストアプリ、ブログ、ECサイトなど</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="mr-2">□</span>
+                        <div>
+                            <p class="font-bold">どんな機能が必要か？</p>
+                            <p class="text-sm text-gray-600">例：ログイン、一覧表示、検索、投稿、編集、削除など</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="mr-2">□</span>
+                        <div>
+                            <p class="font-bold">どんな画面が必要か？</p>
+                            <p class="text-sm text-gray-600">例：ホーム、詳細、フォーム、設定など</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="mr-2">□</span>
+                        <div>
+                            <p class="font-bold">どんなデータを扱うか？</p>
+                            <p class="text-sm text-gray-600">例：ユーザー情報、投稿内容、商品データなど</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4">
+                <p><strong>ポイント：</strong>最初から完璧を目指さなくてOK。まずは最小限の機能（MVP）から始めましょう。</p>
+            </div>
+        </section>
+
+        <!-- 設計相談 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-blue-200">ステップ2: AIに設計を相談する</h2>
+
+            <div class="bg-white p-6 rounded-lg shadow mb-6">
+                <h3 class="font-bold mb-3">相談の例</h3>
+                <div class="code-block p-4 rounded font-mono text-sm">
+<pre>Todoアプリを作りたいです。
+
+機能：
+- Todoの一覧表示
+- 新しいTodoの追加
+- Todoの完了/未完了切り替え
+- Todoの削除
+
+技術：
+- フロントエンド: Next.js (TypeScript)
+- バックエンド: FastAPI
+- スタイリング: Tailwind CSS
+
+この構成で作る場合、どんなファイル構成になりますか？
+また、どの順番で作っていくのが良いですか？</pre>
+                </div>
+            </div>
+
+            <p class="text-sm text-gray-600">AIが提案した構成を確認し、疑問があれば質問しましょう。</p>
+        </section>
+
+        <!-- 開発の進め方 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-blue-200">ステップ3-5: 開発の進め方</h2>
+
+            <div class="space-y-6">
+                <div class="bg-green-50 p-6 rounded-lg">
+                    <h3 class="font-bold mb-3 text-green-700">バックエンドから作る理由</h3>
+                    <ul class="list-disc list-inside text-sm space-y-2">
+                        <li>APIが先にあると、フロントエンドが何を呼び出すか明確になる</li>
+                        <li>/docs でAPIの動作確認ができる</li>
+                        <li>フロントエンド開発時にAPIを待つ必要がなくなる</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="font-bold mb-3">小さく作る、こまめに確認する</h3>
+                    <div class="flex items-center space-x-4 overflow-x-auto py-2">
+                        <div class="flex-shrink-0 bg-gray-100 p-3 rounded text-center">
+                            <div class="text-sm font-bold">機能を作る</div>
+                        </div>
+                        <div class="text-gray-400">→</div>
+                        <div class="flex-shrink-0 bg-gray-100 p-3 rounded text-center">
+                            <div class="text-sm font-bold">動作確認</div>
+                        </div>
+                        <div class="text-gray-400">→</div>
+                        <div class="flex-shrink-0 bg-gray-100 p-3 rounded text-center">
+                            <div class="text-sm font-bold">問題なければ次へ</div>
+                        </div>
+                        <div class="text-gray-400">→</div>
+                        <div class="flex-shrink-0 bg-gray-100 p-3 rounded text-center">
+                            <div class="text-sm font-bold">繰り返し</div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-4">一度に大きな変更をせず、小さな変更を積み重ねていくと、問題が起きても原因を特定しやすい。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- エラー対処 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-red-200 text-red-700">エラーが出たときの対処法</h2>
+
+            <div class="space-y-6">
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="font-bold mb-3">1. エラーメッセージを読む</h3>
+                    <p class="text-sm text-gray-600 mb-3">エラーには原因のヒントが書いてあります。</p>
+                    <div class="code-block p-3 rounded font-mono text-sm">
+<pre class="text-red-400">TypeError: Cannot read property 'map' of undefined
+    at TodoList (src/components/TodoList.tsx:15:23)</pre>
+                    </div>
+                    <ul class="list-disc list-inside text-sm mt-3 space-y-1">
+                        <li><strong>TypeError</strong>：型に関するエラー</li>
+                        <li><strong>Cannot read property 'map' of undefined</strong>：undefinedに対してmapを呼んだ</li>
+                        <li><strong>TodoList.tsx:15:23</strong>：ファイル名と行番号</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="font-bold mb-3">2. AIに質問する</h3>
+                    <p class="text-sm text-gray-600 mb-3">エラーメッセージをそのまま貼り付けて質問：</p>
+                    <div class="code-block p-3 rounded font-mono text-sm">
+<pre>以下のエラーを修正してください：
+
+TypeError: Cannot read property 'map' of undefined
+at TodoList (src/components/TodoList.tsx:15:23)
+
+発生状況：ページを開いたときにエラーになります</pre>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="font-bold mb-3">3. よくあるエラーパターン</h3>
+                    <div class="space-y-3">
+                        <div class="p-3 bg-gray-50 rounded">
+                            <p class="font-bold text-sm">undefined/null関連</p>
+                            <p class="text-sm text-gray-600">→ データがまだ取得できていない状態でアクセスしている</p>
+                        </div>
+                        <div class="p-3 bg-gray-50 rounded">
+                            <p class="font-bold text-sm">CORS error</p>
+                            <p class="text-sm text-gray-600">→ バックエンドのCORS設定が不足</p>
+                        </div>
+                        <div class="p-3 bg-gray-50 rounded">
+                            <p class="font-bold text-sm">404 Not Found</p>
+                            <p class="text-sm text-gray-600">→ APIのURLが間違っている、またはサーバーが起動していない</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 p-4 bg-blue-50 border-l-4 border-blue-500 rounded">
+                <p><strong>覚えておこう：</strong>エラーは悪いことではありません。むしろ「何が問題か」を教えてくれる親切なメッセージです。</p>
+            </div>
+        </section>
+
+        <!-- 第2部完了 -->
+        <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-8">
+            <h3 class="text-xl font-bold text-green-700 mb-2">第2部完了！</h3>
+            <p class="text-green-600">開発環境とAIツールの学習が完了しました。次は実際にアプリを作っていきましょう！</p>
+        </div>
+
+        <!-- ナビゲーション -->
+        <div class="flex justify-between items-center pt-8 border-t">
+            <a href="prompting.php" class="flex items-center text-gray-600 hover:text-blue-600">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                前へ：AIへの指示の出し方
+            </a>
+            <a href="tutorial-setup.php" class="flex items-center bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700">
+                次へ：チュートリアル準備
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+    </main>
+
+    
+<?php include 'includes/footer.php'; ?>

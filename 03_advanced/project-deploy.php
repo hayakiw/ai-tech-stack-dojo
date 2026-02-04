@@ -1,0 +1,104 @@
+<?php
+$page_title = 'デプロイ・運用 - 実践プロジェクト - AI駆動開発 上級編 | AI Tech Stack';
+$current_page = 'practice';
+$extra_styles = '.code-block { background: #1e293b; color: #e2e8f0; }\n        .prompt-box { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #f59e0b; }';
+$section_name = '第9部：実践プロジェクト';
+$step_number = 36;
+$total_steps = 36;
+
+include 'includes/header.php';
+include 'includes/progress.php';
+?>
+    <main class="container mx-auto px-6 py-12 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">デプロイ・運用開始</h1>
+
+        <div class="bg-purple-50 border-l-4 border-purple-500 p-6 mb-8">
+            <p class="text-lg">アプリケーションを本番環境にデプロイし、運用を開始します。</p>
+        </div>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-purple-200">デプロイ先</h2>
+            <div class="bg-white p-6 rounded-lg shadow">
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="p-4 bg-gray-50 rounded">
+                        <h4 class="font-bold">Frontend: Vercel</h4>
+                        <p class="text-sm text-gray-600">Next.jsの最適化、エッジ配信</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded">
+                        <h4 class="font-bold">Backend: Railway</h4>
+                        <p class="text-sm text-gray-600">FastAPI + MySQL + Redis</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-purple-200">デプロイ手順</h2>
+
+            <div class="prompt-box p-4 rounded mb-6">
+                <h4 class="font-bold mb-2">AIへの指示</h4>
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>TaskFlowを本番デプロイするための手順を作成してください。
+
+【要件】
+- フロントエンド: Vercel
+- バックエンド: Railway
+- 環境変数の設定
+- ドメイン設定
+
+デプロイコマンドと設定ファイルを示してください。</pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-purple-200">運用チェックリスト</h2>
+            <div class="bg-white p-6 rounded-lg shadow">
+                <ul class="space-y-2 text-sm">
+                    <li><input type="checkbox" class="mr-2">環境変数がすべて設定されている</li>
+                    <li><input type="checkbox" class="mr-2">HTTPSが有効になっている</li>
+                    <li><input type="checkbox" class="mr-2">エラー通知（Sentry等）が設定されている</li>
+                    <li><input type="checkbox" class="mr-2">バックアップが設定されている</li>
+                    <li><input type="checkbox" class="mr-2">監視ダッシュボードがある</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-purple-200">完成！</h2>
+            <div class="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-8 rounded-lg text-center">
+                <h3 class="text-2xl font-bold mb-4">おめでとうございます！</h3>
+                <p class="mb-4">AI駆動開発 上級編を完了しました。</p>
+                <p class="text-sm opacity-90">
+                    TaskFlowプロジェクトを通じて、要件定義からデプロイまで、<br>
+                    全工程をAIと協力して進める方法を学びました。
+                </p>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-purple-200">次のステップ</h2>
+            <div class="bg-white p-6 rounded-lg shadow">
+                <ul class="space-y-2 text-sm">
+                    <li>・機能追加（通知、フィルター、検索など）</li>
+                    <li>・パフォーマンス最適化</li>
+                    <li>・スケーリング対応</li>
+                    <li>・他のプロジェクトで実践</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="flex justify-between items-center pt-8 border-t">
+            <a href="project-testing.php" class="flex items-center text-gray-600 hover:text-purple-600">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                テスト・CI/CD
+            </a>
+            <a href="index.php" class="flex items-center bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600">
+                トップページへ
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+            </a>
+        </div>
+    </main>
+
+    
+<?php include 'includes/footer.php'; ?>

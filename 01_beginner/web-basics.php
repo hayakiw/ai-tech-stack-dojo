@@ -1,0 +1,324 @@
+<?php
+$page_title = 'Webの仕組み - AIでWebアプリ開発を学ぼう | AI Tech Stack';
+$current_page = 'basics';
+$section_name = '第1部：Web開発の基礎知識';
+$step_number = 1;
+$total_steps = 20;
+$extra_styles = '';
+
+include 'includes/header.php';
+include 'includes/progress.php';
+?>
+
+    <!-- メインコンテンツ -->
+    <main class="container mx-auto px-6 py-12 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">Webの仕組み</h1>
+
+        <!-- イントロ -->
+        <div class="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
+            <p class="text-lg">このページでは、Webサイトがどのように動いているかを学びます。プログラミングを始める前に、全体像を理解しておきましょう。</p>
+        </div>
+
+        <!-- セクション1: インターネットとWebサイト -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-purple-200">インターネットとWebサイトの仕組み</h2>
+
+            <h3 class="text-xl font-bold mb-4">ブラウザとサーバーの関係</h3>
+            <p class="mb-4">Webサイトを見るとき、裏側では以下のようなやり取りが行われています：</p>
+
+            <div class="bg-gray-100 p-6 rounded-lg mb-6">
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+                    <div class="bg-white p-4 rounded-lg shadow text-center">
+                        <div class="text-3xl mb-2">💻</div>
+                        <div class="font-bold">あなたのPC</div>
+                        <div class="text-sm text-gray-500">ブラウザ</div>
+                    </div>
+                    <div class="text-2xl">→ リクエスト →</div>
+                    <div class="bg-white p-4 rounded-lg shadow text-center">
+                        <div class="text-3xl mb-2">🌐</div>
+                        <div class="font-bold">サーバー</div>
+                        <div class="text-sm text-gray-500">Webサイトのデータ</div>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4 mt-4">
+                    <div class="bg-white p-4 rounded-lg shadow text-center">
+                        <div class="text-3xl mb-2">💻</div>
+                        <div class="font-bold">あなたのPC</div>
+                        <div class="text-sm text-gray-500">ページを表示</div>
+                    </div>
+                    <div class="text-2xl">← レスポンス ←</div>
+                    <div class="bg-white p-4 rounded-lg shadow text-center">
+                        <div class="text-3xl mb-2">🌐</div>
+                        <div class="font-bold">サーバー</div>
+                        <div class="text-sm text-gray-500">HTML/CSS/JS送信</div>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="list-disc list-inside space-y-2 mb-6">
+                <li><strong>ブラウザ</strong>：Chrome、Safari、Firefoxなど。Webサイトを表示するソフト</li>
+                <li><strong>サーバー</strong>：Webサイトのデータを保存している遠くのコンピュータ</li>
+                <li><strong>リクエスト</strong>：「このページを見せて」という要求</li>
+                <li><strong>レスポンス</strong>：サーバーからの返答（HTMLファイルなど）</li>
+            </ul>
+
+            <h3 class="text-xl font-bold mb-4">URLとは何か</h3>
+            <p class="mb-4">URL（Uniform Resource Locator）は、Webページの「住所」です。</p>
+
+            <div class="bg-gray-800 text-white p-4 rounded-lg mb-4 font-mono">
+                https://www.example.com/products/item?id=123
+            </div>
+
+            <div class="bg-white p-4 rounded-lg shadow mb-6">
+                <table class="w-full text-left">
+                    <tr class="border-b">
+                        <td class="py-2 font-bold text-purple-600">https://</td>
+                        <td class="py-2">通信の方式（安全な通信を使う）</td>
+                    </tr>
+                    <tr class="border-b">
+                        <td class="py-2 font-bold text-purple-600">www.example.com</td>
+                        <td class="py-2">ドメイン（サーバーの名前）</td>
+                    </tr>
+                    <tr class="border-b">
+                        <td class="py-2 font-bold text-purple-600">/products/item</td>
+                        <td class="py-2">パス（サーバー内の場所）</td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 font-bold text-purple-600">?id=123</td>
+                        <td class="py-2">クエリパラメータ（追加情報）</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- セクション2: フロントエンドとバックエンド -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-purple-200">フロントエンドとバックエンドの違い</h2>
+
+            <p class="mb-6">Web開発は大きく2つの領域に分かれます。このサイトでは両方を学びます。</p>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                <div class="bg-blue-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold mb-3 text-blue-700">フロントエンド（Front-end）</h3>
+                    <p class="mb-3">ユーザーが直接見る・触れる部分</p>
+                    <ul class="list-disc list-inside space-y-1 text-sm">
+                        <li>ボタン、フォーム、画像</li>
+                        <li>ページのデザイン・レイアウト</li>
+                        <li>クリック時のアニメーション</li>
+                    </ul>
+                    <div class="mt-4 pt-4 border-t border-blue-200">
+                        <p class="text-sm font-bold">使用技術：</p>
+                        <p class="text-sm">HTML, CSS, JavaScript, <span class="text-blue-700 font-bold">Next.js</span></p>
+                    </div>
+                </div>
+                <div class="bg-green-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold mb-3 text-green-700">バックエンド（Back-end）</h3>
+                    <p class="mb-3">ユーザーからは見えない裏側の部分</p>
+                    <ul class="list-disc list-inside space-y-1 text-sm">
+                        <li>データの保存・取得</li>
+                        <li>ユーザー認証（ログイン）</li>
+                        <li>計算処理、ビジネスロジック</li>
+                    </ul>
+                    <div class="mt-4 pt-4 border-t border-green-200">
+                        <p class="text-sm font-bold">使用技術：</p>
+                        <p class="text-sm">Python, <span class="text-green-700 font-bold">FastAPI</span>, データベース</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4">
+                <p><strong>ポイント：</strong>このサイトでは、フロントエンドにNext.js、バックエンドにFastAPIを使います。両方をマスターすることで、一人で完全なWebアプリを作れるようになります。</p>
+            </div>
+        </section>
+
+        <!-- セクション3: APIとは -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-purple-200">APIとは何か</h2>
+
+            <p class="mb-4">API（Application Programming Interface）は、フロントエンドとバックエンドが会話するための「窓口」です。</p>
+
+            <div class="bg-gray-100 p-6 rounded-lg mb-6">
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+                    <div class="bg-blue-100 p-4 rounded-lg text-center">
+                        <div class="font-bold text-blue-700">フロントエンド</div>
+                        <div class="text-sm">Next.js</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl">⇄</div>
+                        <div class="text-sm font-bold text-purple-600">API</div>
+                    </div>
+                    <div class="bg-green-100 p-4 rounded-lg text-center">
+                        <div class="font-bold text-green-700">バックエンド</div>
+                        <div class="text-sm">FastAPI</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-bold mb-4">具体例：Todoアプリの場合</h3>
+            <div class="bg-white p-4 rounded-lg shadow mb-6">
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-sm mr-3">GET</span>
+                        <span>Todoの一覧を取得する</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-sm mr-3">POST</span>
+                        <span>新しいTodoを追加する</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-sm mr-3">PUT</span>
+                        <span>Todoを更新する（完了にする等）</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="bg-red-100 text-red-700 px-2 py-1 rounded text-sm mr-3">DELETE</span>
+                        <span>Todoを削除する</span>
+                    </li>
+                </ul>
+            </div>
+
+            <h3 class="text-xl font-bold mb-4">JSON形式について</h3>
+            <p class="mb-4">APIでデータをやり取りするとき、JSON（JavaScript Object Notation）という形式を使います。</p>
+
+            <div class="bg-gray-800 text-white p-4 rounded-lg mb-4 font-mono text-sm overflow-x-auto">
+<pre>{
+  "id": 1,
+  "title": "買い物に行く",
+  "completed": false,
+  "createdAt": "2024-01-15"
+}</pre>
+            </div>
+
+            <p class="text-sm text-gray-600">JSONは人間にも読みやすく、コンピュータにも処理しやすいデータ形式です。</p>
+        </section>
+
+        <!-- 練習問題 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-green-200 text-green-700">練習問題</h2>
+
+            <div class="space-y-6">
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="font-bold mb-3">Q1. 次のうち、フロントエンドの役割はどれ？</h3>
+                    <div class="space-y-2" id="q1">
+                        <label class="flex items-center p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q1" value="a" class="mr-3">
+                            <span>A. データベースにデータを保存する</span>
+                        </label>
+                        <label class="flex items-center p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q1" value="b" class="mr-3">
+                            <span>B. ボタンをクリックしたときの画面の動きを作る</span>
+                        </label>
+                        <label class="flex items-center p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q1" value="c" class="mr-3">
+                            <span>C. ユーザーのパスワードを暗号化する</span>
+                        </label>
+                    </div>
+                    <button onclick="checkAnswer('q1', 'b', this)" class="mt-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">答え合わせ</button>
+                    <div id="q1-result" class="mt-3 hidden"></div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="font-bold mb-3">Q2. APIの役割として正しいものは？</h3>
+                    <div class="space-y-2" id="q2">
+                        <label class="flex items-center p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q2" value="a" class="mr-3">
+                            <span>A. Webページのデザインを決める</span>
+                        </label>
+                        <label class="flex items-center p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q2" value="b" class="mr-3">
+                            <span>B. フロントエンドとバックエンドがデータをやり取りする窓口</span>
+                        </label>
+                        <label class="flex items-center p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q2" value="c" class="mr-3">
+                            <span>C. インターネットに接続する機器</span>
+                        </label>
+                    </div>
+                    <button onclick="checkAnswer('q2', 'b', this)" class="mt-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">答え合わせ</button>
+                    <div id="q2-result" class="mt-3 hidden"></div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="font-bold mb-3">Q3. 次のURLの「example.com」は何を表す？</h3>
+                    <div class="bg-gray-800 text-white p-2 rounded mb-3 font-mono text-sm">https://example.com/about</div>
+                    <div class="space-y-2" id="q3">
+                        <label class="flex items-center p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q3" value="a" class="mr-3">
+                            <span>A. パス（ページの場所）</span>
+                        </label>
+                        <label class="flex items-center p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q3" value="b" class="mr-3">
+                            <span>B. ドメイン（サーバーの名前）</span>
+                        </label>
+                        <label class="flex items-center p-2 rounded hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="q3" value="c" class="mr-3">
+                            <span>C. プロトコル（通信方式）</span>
+                        </label>
+                    </div>
+                    <button onclick="checkAnswer('q3', 'b', this)" class="mt-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">答え合わせ</button>
+                    <div id="q3-result" class="mt-3 hidden"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- まとめ -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-purple-200">まとめ</h2>
+            <div class="bg-purple-50 p-6 rounded-lg">
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <span class="text-purple-600 mr-2">✓</span>
+                        <span>Webサイトは、ブラウザがサーバーにリクエストを送り、レスポンスを受け取って表示する</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-purple-600 mr-2">✓</span>
+                        <span>フロントエンド（画面）とバックエンド（裏側）の2つの領域がある</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-purple-600 mr-2">✓</span>
+                        <span>APIはフロントとバックをつなぐ窓口で、JSON形式でデータをやり取りする</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-purple-600 mr-2">✓</span>
+                        <span>このサイトでは Next.js（フロント）と FastAPI（バック）を使う</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ナビゲーション -->
+        <div class="flex justify-between items-center pt-8 border-t">
+            <a href="index.php" class="flex items-center text-gray-600 hover:text-purple-600">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                トップページ
+            </a>
+            <a href="html-css-basics.php" class="flex items-center bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700">
+                次へ：HTML/CSS基礎
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+    </main>
+
+    <script>
+        function checkAnswer(questionId, correctAnswer, button) {
+            const selected = document.querySelector(`input[name="${questionId}"]:checked`);
+            const resultDiv = document.getElementById(`${questionId}-result`);
+
+            if (!selected) {
+                resultDiv.innerHTML = '<p class="text-yellow-600">選択肢を選んでください</p>';
+                resultDiv.classList.remove('hidden');
+                return;
+            }
+
+            if (selected.value === correctAnswer) {
+                resultDiv.innerHTML = '<p class="text-green-600 font-bold">正解です！</p>';
+            } else {
+                resultDiv.innerHTML = '<p class="text-red-600">不正解です。もう一度考えてみましょう。</p>';
+            }
+            resultDiv.classList.remove('hidden');
+        }
+    </script>
+
+<?php include 'includes/footer.php'; ?>
