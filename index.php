@@ -1,5 +1,5 @@
 <?php
-$page_title = 'AI Tech Stack Dojo - AIと学ぶプログラミング＆マーケティング';
+$page_title = 'AI Tech Stack Dojo - AIと学ぶWeb制作・開発・マーケティング';
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -10,6 +10,9 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶプログラミング＆マーケ
     <style>
         .gradient-hero {
             background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
+        }
+        .card-hp {
+            background: linear-gradient(135deg, #ea580c 0%, #f59e0b 100%);
         }
         .card-webdev {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -32,12 +35,12 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶプログラミング＆マーケ
         <div class="container mx-auto px-6 text-center">
             <h1 class="text-4xl md:text-6xl font-bold mb-6">AI Tech Stack Dojo</h1>
             <p class="text-xl md:text-2xl mb-4 opacity-90">AIと一緒に学ぶ、実践的なスキル習得サイト</p>
-            <p class="text-lg opacity-75 mb-8">完全初心者から、AIを活用したWeb開発・マーケティングを習得</p>
+            <p class="text-lg opacity-75 mb-8">完全初心者から、AIを活用したWeb制作・開発・マーケティングを習得</p>
             <div class="flex flex-wrap justify-center gap-4">
                 <span class="bg-white/20 px-4 py-2 rounded-full">ChatGPT / Claude</span>
+                <span class="bg-white/20 px-4 py-2 rounded-full">ホームページ制作</span>
                 <span class="bg-white/20 px-4 py-2 rounded-full">Web開発</span>
                 <span class="bg-white/20 px-4 py-2 rounded-full">マーケティング</span>
-                <span class="bg-white/20 px-4 py-2 rounded-full">実践重視</span>
             </div>
         </div>
     </section>
@@ -45,73 +48,108 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶプログラミング＆マーケ
     <!-- コース選択 -->
     <section class="py-20 -mt-12">
         <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                <!-- Web開発コース -->
-                <a href="webdev/" class="block hover-scale">
-                    <div class="card-webdev text-white rounded-2xl overflow-hidden shadow-xl">
-                        <div class="p-8">
-                            <div class="text-6xl mb-4">💻</div>
-                            <h2 class="text-3xl font-bold mb-4">AI×Web開発</h2>
-                            <p class="text-lg opacity-90 mb-6">AIを活用したモダンなWeb開発を基礎から実践まで学ぶ</p>
+            <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <!-- ホームページ制作コース -->
+                <a href="hp/" class="block hover-scale">
+                    <div class="card-hp text-white rounded-2xl overflow-hidden shadow-xl h-full">
+                        <div class="p-6">
+                            <div class="text-5xl mb-3">🌐</div>
+                            <h2 class="text-2xl font-bold mb-3">AI×ホームページ制作</h2>
+                            <p class="text-sm opacity-90 mb-4">AIを使って初心者でも素敵なWebサイトが作れる</p>
                             <div class="space-y-2 text-sm opacity-80">
                                 <div class="flex items-center">
-                                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    HTML/CSS/デザイン基礎
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    AIデザイン・コーディング
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    ポートフォリオ・LP制作
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white/20 px-6 py-3 flex justify-between items-center">
+                            <span class="font-bold text-sm">初心者向け / 14レッスン</span>
+                            <span class="bg-white text-orange-600 px-3 py-1 rounded-full font-bold text-xs">始める →</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Web開発コース -->
+                <a href="webdev/" class="block hover-scale">
+                    <div class="card-webdev text-white rounded-2xl overflow-hidden shadow-xl h-full">
+                        <div class="p-6">
+                            <div class="text-5xl mb-3">💻</div>
+                            <h2 class="text-2xl font-bold mb-3">AI×Web開発</h2>
+                            <p class="text-sm opacity-90 mb-4">モダンなWeb開発を基礎から実践まで学ぶ</p>
+                            <div class="space-y-2 text-sm opacity-80">
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                                     </svg>
                                     HTML/CSS/JavaScript基礎
                                 </div>
                                 <div class="flex items-center">
-                                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                                     </svg>
                                     Next.js / FastAPI
                                 </div>
                                 <div class="flex items-center">
-                                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                                     </svg>
-                                    AIコーディング（Claude Code / Cursor）
+                                    Claude Code / Cursor
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-white/20 px-8 py-4 flex justify-between items-center">
-                            <span class="font-bold">初級〜上級 / 80レッスン</span>
-                            <span class="bg-white text-purple-600 px-4 py-2 rounded-full font-bold text-sm">始める →</span>
+                        <div class="bg-white/20 px-6 py-3 flex justify-between items-center">
+                            <span class="font-bold text-sm">初級〜上級 / 80レッスン</span>
+                            <span class="bg-white text-purple-600 px-3 py-1 rounded-full font-bold text-xs">始める →</span>
                         </div>
                     </div>
                 </a>
 
                 <!-- マーケティングコース -->
                 <a href="marketing/" class="block hover-scale">
-                    <div class="card-marketing text-white rounded-2xl overflow-hidden shadow-xl">
-                        <div class="p-8">
-                            <div class="text-6xl mb-4">📊</div>
-                            <h2 class="text-3xl font-bold mb-4">AI×マーケティング</h2>
-                            <p class="text-lg opacity-90 mb-6">AIを活用したマーケティングの基礎と実践テクニック</p>
+                    <div class="card-marketing text-white rounded-2xl overflow-hidden shadow-xl h-full">
+                        <div class="p-6">
+                            <div class="text-5xl mb-3">📊</div>
+                            <h2 class="text-2xl font-bold mb-3">AI×マーケティング</h2>
+                            <p class="text-sm opacity-90 mb-4">マーケティングの基礎と実践テクニック</p>
                             <div class="space-y-2 text-sm opacity-80">
                                 <div class="flex items-center">
-                                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                                     </svg>
                                     マーケティングの基礎知識
                                 </div>
                                 <div class="flex items-center">
-                                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                                     </svg>
                                     SNS・SEO・広告×AI
                                 </div>
                                 <div class="flex items-center">
-                                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                                     </svg>
-                                    プロンプト術・コピーライティング
+                                    プロンプト・コピーライティング
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-white/20 px-8 py-4 flex justify-between items-center">
-                            <span class="font-bold">初心者向け / 16レッスン</span>
-                            <span class="bg-white text-teal-600 px-4 py-2 rounded-full font-bold text-sm">始める →</span>
+                        <div class="bg-white/20 px-6 py-3 flex justify-between items-center">
+                            <span class="font-bold text-sm">初心者向け / 16レッスン</span>
+                            <span class="bg-white text-teal-600 px-3 py-1 rounded-full font-bold text-xs">始める →</span>
                         </div>
                     </div>
                 </a>
@@ -170,8 +208,8 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶプログラミング＆マーケ
                 <div class="bg-white p-6 rounded-lg shadow flex items-start">
                     <div class="text-green-500 text-2xl mr-4">✓</div>
                     <div>
-                        <h3 class="font-bold mb-1">個人事業主・フリーランス</h3>
-                        <p class="text-sm text-gray-600">一人でWeb制作からマーケティングまでこなしたい方</p>
+                        <h3 class="font-bold mb-1">自分のサイトを作りたい方</h3>
+                        <p class="text-sm text-gray-600">ポートフォリオやビジネスサイトをAIで効率的に制作したい方</p>
                     </div>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow flex items-start">
@@ -191,11 +229,14 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶプログラミング＆マーケ
             <h2 class="text-3xl font-bold mb-6">さあ、始めましょう</h2>
             <p class="text-xl mb-8 opacity-90">AIと一緒に、新しいスキルを身につけよう</p>
             <div class="flex flex-wrap justify-center gap-4">
-                <a href="webdev/" class="inline-block bg-purple-500 hover:bg-purple-600 text-white px-8 py-4 rounded-lg font-bold text-lg transition">
-                    Web開発を学ぶ
+                <a href="hp/" class="inline-block bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-bold transition">
+                    ホームページ制作
                 </a>
-                <a href="marketing/" class="inline-block bg-teal-500 hover:bg-teal-600 text-white px-8 py-4 rounded-lg font-bold text-lg transition">
-                    マーケティングを学ぶ
+                <a href="webdev/" class="inline-block bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded-lg font-bold transition">
+                    Web開発
+                </a>
+                <a href="marketing/" class="inline-block bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-lg font-bold transition">
+                    マーケティング
                 </a>
             </div>
         </div>
@@ -206,7 +247,8 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶプログラミング＆マーケ
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="text-xl font-bold mb-4 md:mb-0">AI Tech Stack Dojo</div>
-                <div class="flex space-x-6">
+                <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+                    <a href="hp/" class="hover:text-gray-300">HP制作コース</a>
                     <a href="webdev/" class="hover:text-gray-300">Web開発コース</a>
                     <a href="marketing/" class="hover:text-gray-300">マーケティングコース</a>
                 </div>
