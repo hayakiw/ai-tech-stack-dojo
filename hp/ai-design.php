@@ -55,7 +55,7 @@ include 'includes/progress.php';
                     <div class="flex items-start">
                         <span class="text-3xl mr-4">💬</span>
                         <div class="flex-1">
-                            <h3 class="font-bold text-lg mb-2">ChatGPT / Claude</h3>
+                            <h3 class="font-bold text-lg mb-2">Gemini / Claude</h3>
                             <p class="text-gray-600 mb-3">テキストベースでデザイン相談、コード生成</p>
                             <div class="flex flex-wrap gap-2">
                                 <span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs">配色相談</span>
@@ -155,7 +155,7 @@ include 'includes/progress.php';
                     </li>
                     <li class="flex items-start">
                         <span class="text-orange-600 mr-2">✓</span>
-                        <span>ChatGPT/Claude、v0、Figma+AIなどのツールがある</span>
+                        <span>Gemini/Claude、v0、Figma+AIなどのツールがある</span>
                     </li>
                     <li class="flex items-start">
                         <span class="text-orange-600 mr-2">✓</span>

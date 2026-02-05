@@ -81,6 +81,21 @@ include 'includes/progress.php';
                         </div>
                     </div>
                 </div>
+
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <div class="flex items-start">
+                        <div class="text-3xl mr-4">🍌</div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-lg text-fuchsia-600">Gemini Nanobanana</h3>
+                            <p class="text-gray-600 mt-2">Geminiの最新画像生成モデル。高品質でリアルな画像を高速に生成。日本語プロンプトにも対応。</p>
+                            <div class="mt-3 flex flex-wrap gap-2">
+                                <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">日本語対応</span>
+                                <span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs">高速生成</span>
+                                <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs">高品質</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 

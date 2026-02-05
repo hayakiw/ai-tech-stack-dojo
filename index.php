@@ -38,6 +38,24 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶ';
         .card-training {
             background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
         }
+        .card-restaurant {
+            background: linear-gradient(135deg, #d97706 0%, #fbbf24 100%);
+        }
+        .card-salon {
+            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+        }
+        .card-juku {
+            background: linear-gradient(135deg, #4f46e5 0%, #818cf8 100%);
+        }
+        .card-dental {
+            background: linear-gradient(135deg, #0891b2 0%, #22d3d1 100%);
+        }
+        .card-resale {
+            background: linear-gradient(135deg, #65a30d 0%, #84cc16 100%);
+        }
+        .card-fortune {
+            background: linear-gradient(135deg, #9333ea 0%, #c084fc 100%);
+        }
         .hover-scale {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -65,6 +83,12 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶ';
                 <span class="bg-white/20 px-3 py-2 rounded-full text-sm">データ分析・BI</span>
                 <span class="bg-white/20 px-3 py-2 rounded-full text-sm">人材育成・教育</span>
                 <span class="bg-white/20 px-3 py-2 rounded-full text-sm">副業・フリーランス</span>
+                <span class="bg-white/20 px-3 py-2 rounded-full text-sm">飲食店経営</span>
+                <span class="bg-white/20 px-3 py-2 rounded-full text-sm">美容院経営</span>
+                <span class="bg-white/20 px-3 py-2 rounded-full text-sm">学習塾経営</span>
+                <span class="bg-white/20 px-3 py-2 rounded-full text-sm">歯科医院経営</span>
+                <span class="bg-white/20 px-3 py-2 rounded-full text-sm">せどり・転売</span>
+                <span class="bg-white/20 px-3 py-2 rounded-full text-sm">占い・スピリチュアル</span>
             </div>
         </div>
     </section>
@@ -387,6 +411,216 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶ';
                         </div>
                     </div>
                 </a>
+
+                <!-- 飲食店経営コース -->
+                <a href="restaurant/" class="block hover-scale">
+                    <div class="card-restaurant text-white rounded-2xl overflow-hidden shadow-xl h-full">
+                        <div class="p-6">
+                            <div class="text-5xl mb-3">🍽️</div>
+                            <h2 class="text-2xl font-bold mb-3">AI×飲食店経営</h2>
+                            <p class="text-sm opacity-90 mb-4">AIで集客・業務効率・売上アップを実現</p>
+                            <div class="space-y-2 text-sm opacity-80">
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    SNS・予約・レビュー対策
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    メニュー開発・在庫管理
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    顧客分析・デリバリー戦略
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white/20 px-6 py-3 flex justify-between items-center">
+                            <span class="font-bold text-sm">初心者向け / 14レッスン</span>
+                            <span class="bg-white text-amber-600 px-3 py-1 rounded-full font-bold text-xs">始める →</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 美容院経営コース -->
+                <a href="salon/" class="block hover-scale">
+                    <div class="card-salon text-white rounded-2xl overflow-hidden shadow-xl h-full">
+                        <div class="p-6">
+                            <div class="text-5xl mb-3">💇</div>
+                            <h2 class="text-2xl font-bold mb-3">AI×美容院経営</h2>
+                            <p class="text-sm opacity-90 mb-4">AIで集客・接客・業務効率化を実現</p>
+                            <div class="space-y-2 text-sm opacity-80">
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    SNS・ホットペッパー対策
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    カウンセリング・スタイル提案
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    顧客管理・店販戦略
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white/20 px-6 py-3 flex justify-between items-center">
+                            <span class="font-bold text-sm">初心者向け / 14レッスン</span>
+                            <span class="bg-white text-violet-600 px-3 py-1 rounded-full font-bold text-xs">始める →</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 学習塾経営コース -->
+                <a href="juku/" class="block hover-scale">
+                    <div class="card-juku text-white rounded-2xl overflow-hidden shadow-xl h-full">
+                        <div class="p-6">
+                            <div class="text-5xl mb-3">📚</div>
+                            <h2 class="text-2xl font-bold mb-3">AI×学習塾経営</h2>
+                            <p class="text-sm opacity-90 mb-4">AIで集客・教務・業務効率化を実現</p>
+                            <div class="space-y-2 text-sm opacity-80">
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    SNS・Web広告・口コミ対策
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    教材作成・カリキュラム設計
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    保護者対応・講師教育
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white/20 px-6 py-3 flex justify-between items-center">
+                            <span class="font-bold text-sm">初心者向け / 14レッスン</span>
+                            <span class="bg-white text-indigo-600 px-3 py-1 rounded-full font-bold text-xs">始める →</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 歯科医院経営コース -->
+                <a href="dental/" class="block hover-scale">
+                    <div class="card-dental text-white rounded-2xl overflow-hidden shadow-xl h-full">
+                        <div class="p-6">
+                            <div class="text-5xl mb-3">🦷</div>
+                            <h2 class="text-2xl font-bold mb-3">AI×歯科医院経営</h2>
+                            <p class="text-sm opacity-90 mb-4">AIで集客・患者対応・業務効率化を実現</p>
+                            <div class="space-y-2 text-sm opacity-80">
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    SNS・MEO・口コミ対策
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    患者説明・リコール管理
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    スタッフ教育・レセプト業務
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white/20 px-6 py-3 flex justify-between items-center">
+                            <span class="font-bold text-sm">初心者向け / 14レッスン</span>
+                            <span class="bg-white text-cyan-600 px-3 py-1 rounded-full font-bold text-xs">始める →</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- せどり・転売コース -->
+                <a href="resale/" class="block hover-scale">
+                    <div class="card-resale text-white rounded-2xl overflow-hidden shadow-xl h-full">
+                        <div class="p-6">
+                            <div class="text-5xl mb-3">💹</div>
+                            <h2 class="text-2xl font-bold mb-3">AI×せどり・転売</h2>
+                            <p class="text-sm opacity-90 mb-4">AIでリサーチ・出品・販売を効率化</p>
+                            <div class="space-y-2 text-sm opacity-80">
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    商品リサーチ・仕入れ戦略
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    商品説明文・画像作成
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    外注化・スケールアップ
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white/20 px-6 py-3 flex justify-between items-center">
+                            <span class="font-bold text-sm">初心者向け / 14レッスン</span>
+                            <span class="bg-white text-lime-600 px-3 py-1 rounded-full font-bold text-xs">始める →</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 占い・スピリチュアルコース -->
+                <a href="fortune/" class="block hover-scale">
+                    <div class="card-fortune text-white rounded-2xl overflow-hidden shadow-xl h-full">
+                        <div class="p-6">
+                            <div class="text-5xl mb-3">🔮</div>
+                            <h2 class="text-2xl font-bold mb-3">AI×占い・スピリチュアル</h2>
+                            <p class="text-sm opacity-90 mb-4">AIで鑑定・集客・サービス運営を効率化</p>
+                            <div class="space-y-2 text-sm opacity-80">
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    SNS・ブログ集客
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    鑑定文・コンテンツ作成
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    サービス設計・収益化
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white/20 px-6 py-3 flex justify-between items-center">
+                            <span class="font-bold text-sm">初心者向け / 14レッスン</span>
+                            <span class="bg-white text-purple-600 px-3 py-1 rounded-full font-bold text-xs">始める →</span>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
@@ -518,6 +752,24 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶ';
                 <a href="training/" class="inline-block bg-sky-500 hover:bg-sky-600 text-white px-5 py-2 rounded-lg font-bold text-sm transition">
                     人材育成・教育
                 </a>
+                <a href="restaurant/" class="inline-block bg-amber-500 hover:bg-amber-600 text-white px-5 py-2 rounded-lg font-bold text-sm transition">
+                    飲食店経営
+                </a>
+                <a href="salon/" class="inline-block bg-violet-500 hover:bg-violet-600 text-white px-5 py-2 rounded-lg font-bold text-sm transition">
+                    美容院経営
+                </a>
+                <a href="juku/" class="inline-block bg-indigo-500 hover:bg-indigo-600 text-white px-5 py-2 rounded-lg font-bold text-sm transition">
+                    学習塾経営
+                </a>
+                <a href="dental/" class="inline-block bg-cyan-500 hover:bg-cyan-600 text-white px-5 py-2 rounded-lg font-bold text-sm transition">
+                    歯科医院経営
+                </a>
+                <a href="resale/" class="inline-block bg-lime-500 hover:bg-lime-600 text-white px-5 py-2 rounded-lg font-bold text-sm transition">
+                    せどり・転売
+                </a>
+                <a href="fortune/" class="inline-block bg-purple-500 hover:bg-purple-600 text-white px-5 py-2 rounded-lg font-bold text-sm transition">
+                    占い・スピリチュアル
+                </a>
             </div>
         </div>
     </section>
@@ -537,6 +789,12 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶ';
                     <a href="bi/" class="hover:text-gray-300">データ分析・BI</a>
                     <a href="training/" class="hover:text-gray-300">人材育成・教育</a>
                     <a href="sidejob/" class="hover:text-gray-300">副業・フリーランス</a>
+                    <a href="restaurant/" class="hover:text-gray-300">飲食店経営</a>
+                    <a href="salon/" class="hover:text-gray-300">美容院経営</a>
+                    <a href="juku/" class="hover:text-gray-300">学習塾経営</a>
+                    <a href="dental/" class="hover:text-gray-300">歯科医院経営</a>
+                    <a href="resale/" class="hover:text-gray-300">せどり・転売</a>
+                    <a href="fortune/" class="hover:text-gray-300">占い・スピリチュアル</a>
                 </div>
             </div>
             <div class="text-center mt-8 text-gray-400">
