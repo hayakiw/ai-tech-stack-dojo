@@ -1,7 +1,7 @@
 <?php
 $page_title = '要件定義 - 実践プロジェクト - AI駆動開発 上級編 | AI Tech Stack';
 $current_page = 'practice';
-$extra_styles = '.code-block { background: #1e293b; color: #e2e8f0; }\n        .prompt-box { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #f59e0b; }';
+$extra_styles = '.code-block { background: #1e293b; color: #e2e8f0; }\n        .prompt-box { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #f59e0b; }';
 $section_name = '第9部：実践プロジェクト';
 $step_number = 31;
 $total_steps = 36;
@@ -15,6 +15,25 @@ include 'includes/progress.php';
         <div class="bg-purple-50 border-l-4 border-purple-500 p-6 mb-8">
             <p class="text-lg">リアルタイム同期対応のプロジェクト管理ツールを、AIと一緒に要件定義から構築します。</p>
         </div>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-purple-200">Claude Codeでプロジェクトを始める</h2>
+            <div class="bg-white p-6 rounded-lg shadow">
+                <p class="mb-4">まずプロジェクトフォルダを作成し、Claude Codeを起動します。Gitリポジトリを初期化しておくことで、Claude Codeがバージョン管理を活用しながら開発を進められます。</p>
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto mb-4">
+<pre><span class="text-green-400"># プロジェクトフォルダを作成</span>
+mkdir taskflow
+cd taskflow
+
+<span class="text-green-400"># Gitリポジトリを初期化</span>
+git init
+
+<span class="text-green-400"># Claude Codeを起動</span>
+claude</pre>
+                </div>
+                <p class="text-sm text-gray-600">Claude Codeが起動したら、プロジェクトの要件をそのまま自然言語で伝えることができます。</p>
+            </div>
+        </section>
 
         <section class="mb-12">
             <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-purple-200">プロジェクト概要</h2>
@@ -47,19 +66,56 @@ include 'includes/progress.php';
         <section class="mb-12">
             <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-purple-200">AIと要件整理</h2>
 
-            <div class="prompt-box p-4 rounded mb-6">
-                <h4 class="font-bold mb-2">AIへの指示</h4>
+            <div class="bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded mb-6">
+                <h4 class="font-bold mb-2 text-indigo-700">Claude Codeへの指示</h4>
                 <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
 <pre>プロジェクト管理ツール「TaskFlow」の要件を整理してください。
 
 【概要】
-カンバン形式のタスク管理。リアルタイム同期対応。
+カンバン形式のタスク管理アプリ。リアルタイム同期対応。
+複数ユーザーが同時に同じボードを操作できる。
 
-【ユーザーストーリー】を洗い出してください
-【機能一覧】を優先度付きで作成してください
-【画面一覧】を作成してください
-【API一覧】を作成してください</pre>
+以下を洗い出してください：
+【ユーザーストーリー】主要なユースケースを網羅
+【機能一覧】優先度（必須/Phase2/Phase3）付きで作成
+【画面一覧】各画面の目的と主要UI要素を記載
+【API一覧】RESTful APIのエンドポイント設計</pre>
                 </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h3 class="font-bold mb-4">Claude Codeが行うこと</h3>
+                <p class="mb-4 text-sm text-gray-600">上記の指示を受けると、Claude Codeは以下の作業を自動的に進めます。</p>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <span class="text-green-500 mr-2 mt-1">&#10003;</span>
+                        <div>
+                            <span class="font-bold">要件の分析</span>
+                            <p class="text-sm text-gray-600">指示内容を解析し、不足している要件や曖昧な点を洗い出します</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-green-500 mr-2 mt-1">&#10003;</span>
+                        <div>
+                            <span class="font-bold">ユーザーストーリーの生成</span>
+                            <p class="text-sm text-gray-600">「〇〇として、△△したい。なぜなら□□だから」の形式で具体的なストーリーを作成します</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-green-500 mr-2 mt-1">&#10003;</span>
+                        <div>
+                            <span class="font-bold">機能一覧の作成</span>
+                            <p class="text-sm text-gray-600">MVP（最小限の実用的な製品）に必要な機能を優先度付きでリストアップします</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-green-500 mr-2 mt-1">&#10003;</span>
+                        <div>
+                            <span class="font-bold">画面・APIエンドポイントの設計</span>
+                            <p class="text-sm text-gray-600">画面遷移とRESTful APIのエンドポイントを一覧として整理します</p>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </section>
 
@@ -87,9 +143,37 @@ include 'includes/progress.php';
         </section>
 
         <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-purple-200">Claude Codeに要件ドキュメントを作成させる</h2>
+
+            <div class="bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded mb-6">
+                <h4 class="font-bold mb-2 text-indigo-700">Claude Codeへの指示</h4>
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre>TaskFlowプロジェクトのREADME.mdを作成してください。
+プロジェクト概要、技術スタック、機能一覧（MVP）、
+セットアップ手順のセクションを含めてください。</pre>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <p class="mb-4">README.mdを先に作ることで、プロジェクトの全体像をClaude Codeと共有できます。以降の開発でClaude Codeに指示を出す際、README.mdの内容がコンテキストとして自動的に参照されるため、一貫性のあるコード生成が期待できます。</p>
+                <div class="bg-gray-50 p-4 rounded text-sm">
+                    <h4 class="font-bold mb-2">README.mdに含めるべき情報</h4>
+                    <ul class="space-y-1">
+                        <li>&#10003; プロジェクト名と概要説明</li>
+                        <li>&#10003; 使用する技術スタック（Next.js, FastAPI, MySQL, WebSocket）</li>
+                        <li>&#10003; MVP機能の一覧と優先度</li>
+                        <li>&#10003; ローカル環境のセットアップ手順</li>
+                        <li>&#10003; ディレクトリ構成の概要</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
             <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-purple-200">次のステップ</h2>
             <div class="bg-purple-50 p-6 rounded-lg">
-                <p>要件が整理できたら、次はアーキテクチャを設計します。AIと一緒に技術選定を行いましょう。</p>
+                <p class="mb-2">要件が整理できたら、次はアーキテクチャを設計します。Claude Codeと一緒に技術選定とディレクトリ構成を決定し、フロントエンドとバックエンドの責務分担を明確にしましょう。</p>
+                <p class="text-sm text-gray-600">要件定義ドキュメント（README.md）があることで、アーキテクチャ設計時にもClaude Codeが一貫した提案を行えます。</p>
             </div>
         </section>
 
@@ -105,5 +189,5 @@ include 'includes/progress.php';
         </div>
     </main>
 
-    
+
 <?php include 'includes/footer.php'; ?>

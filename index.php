@@ -71,9 +71,8 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶ';
         <div class="container mx-auto px-6 text-center">
             <h1 class="text-4xl md:text-6xl font-bold mb-6">AI Tech Stack Dojo</h1>
             <p class="text-xl md:text-2xl mb-4 opacity-90">AIと一緒に学ぶ、実践的なスキル習得サイト</p>
-            <p class="text-lg opacity-75 mb-8">完全初心者から、AIを活用したWeb制作・開発・マーケティング・営業・データ分析を習得</p>
+            <p class="text-lg opacity-75 mb-8">完全初心者から、AIを活用したWeb制作・開発・マーケティング・営業・データ分析などを習得</p>
             <div class="flex flex-wrap justify-center gap-3">
-                <span class="bg-white/20 px-3 py-2 rounded-full text-sm">ChatGPT / Claude</span>
                 <span class="bg-white/20 px-3 py-2 rounded-full text-sm">Web開発</span>
                 <span class="bg-white/20 px-3 py-2 rounded-full text-sm">デザイン</span>
                 <span class="bg-white/20 px-3 py-2 rounded-full text-sm">ホームページ制作</span>
@@ -89,6 +88,19 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶ';
                 <span class="bg-white/20 px-3 py-2 rounded-full text-sm">歯科医院経営</span>
                 <span class="bg-white/20 px-3 py-2 rounded-full text-sm">せどり・転売</span>
                 <span class="bg-white/20 px-3 py-2 rounded-full text-sm">占い・スピリチュアル</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 注意書き -->
+    <section class="py-6 bg-amber-400 border-b-4 border-amber-500">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-center gap-3">
+                <span class="text-3xl">&#9888;</span>
+                <div class="text-center">
+                    <p class="text-base font-bold text-amber-900">当サイトはAIにより自動運営されています</p>
+                    <p class="text-sm text-amber-800 mt-1">コンテンツの生成・更新はAIが行っており、情報に誤りが含まれる可能性があります。重要な判断にご利用の際は、必ず他の情報源もご確認ください。</p>
+                </div>
             </div>
         </div>
     </section>
@@ -725,11 +737,14 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶ';
             <h2 class="text-3xl font-bold mb-6">さあ、始めましょう</h2>
             <p class="text-xl mb-8 opacity-90">AIと一緒に、新しいスキルを身につけよう</p>
             <div class="flex flex-wrap justify-center gap-3">
-                <a href="hp/" class="inline-block bg-orange-500 hover:bg-orange-600 text-white px-5 py-2 rounded-lg font-bold text-sm transition">
-                    HP制作
-                </a>
                 <a href="webdev/" class="inline-block bg-purple-500 hover:bg-purple-600 text-white px-5 py-2 rounded-lg font-bold text-sm transition">
                     Web開発
+                </a>
+                <a href="design/" class="inline-block bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-5 py-2 rounded-lg font-bold text-sm transition">
+                    デザイン
+                </a>
+                <a href="hp/" class="inline-block bg-orange-500 hover:bg-orange-600 text-white px-5 py-2 rounded-lg font-bold text-sm transition">
+                    HP制作
                 </a>
                 <a href="marketing/" class="inline-block bg-teal-500 hover:bg-teal-600 text-white px-5 py-2 rounded-lg font-bold text-sm transition">
                     マーケティング
@@ -737,20 +752,17 @@ $page_title = 'AI Tech Stack Dojo - AIと学ぶ';
                 <a href="sales/" class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-lg font-bold text-sm transition">
                     営業・セールス
                 </a>
-                <a href="bi/" class="inline-block bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2 rounded-lg font-bold text-sm transition">
-                    データ分析・BI
-                </a>
                 <a href="process-auto/" class="inline-block bg-violet-500 hover:bg-violet-600 text-white px-5 py-2 rounded-lg font-bold text-sm transition">
                     業務自動化
                 </a>
-                <a href="sidejob/" class="inline-block bg-rose-500 hover:bg-rose-600 text-white px-5 py-2 rounded-lg font-bold text-sm transition">
-                    副業・フリーランス
-                </a>
-                <a href="design/" class="inline-block bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-5 py-2 rounded-lg font-bold text-sm transition">
-                    デザイン
+                <a href="bi/" class="inline-block bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2 rounded-lg font-bold text-sm transition">
+                    データ分析・BI
                 </a>
                 <a href="training/" class="inline-block bg-sky-500 hover:bg-sky-600 text-white px-5 py-2 rounded-lg font-bold text-sm transition">
                     人材育成・教育
+                </a>
+                <a href="sidejob/" class="inline-block bg-rose-500 hover:bg-rose-600 text-white px-5 py-2 rounded-lg font-bold text-sm transition">
+                    副業・フリーランス
                 </a>
                 <a href="restaurant/" class="inline-block bg-amber-500 hover:bg-amber-600 text-white px-5 py-2 rounded-lg font-bold text-sm transition">
                     飲食店経営

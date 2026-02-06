@@ -1,7 +1,10 @@
 <?php
 $page_title = 'ブログアプリ設計編 - AI×Web開発 中級編 | AI Tech Stack';
 $current_page = 'practice';
-$extra_styles = '.code-block {\n            background: #1e293b;\n            color: #e2e8f0;\n        }';
+$extra_styles = '.code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+        }';
 $section_name = '第8部：実践プロジェクト';
 $step_number = 22;
 $total_steps = 24;
@@ -17,6 +20,28 @@ include 'includes/progress.php';
         <div class="bg-indigo-50 border-l-4 border-indigo-500 p-6 mb-8">
             <p class="text-lg">中級編の集大成として、認証付きブログアプリを作成します。まずは設計からスタート！</p>
         </div>
+
+        <!-- Claude Codeでプロジェクトを始める -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-indigo-200">Claude Codeでプロジェクトを始める</h2>
+
+            <p class="mb-4">まずはプロジェクト用のフォルダを作成し、Claude Codeを起動しましょう。</p>
+
+            <div class="bg-indigo-50 border-l-4 border-indigo-500 p-6 rounded-r-lg mb-6">
+                <h3 class="font-bold text-indigo-700 mb-3">Claude Codeへの指示</h3>
+                <p class="text-sm text-gray-700 mb-3">ターミナルで以下のコマンドを実行して、プロジェクトフォルダを作成し、Claude Codeを起動します。</p>
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre><span class="text-green-400"># プロジェクトフォルダを作成</span>
+mkdir blog-app
+cd blog-app
+
+<span class="text-green-400"># Claude Codeを起動</span>
+claude</pre>
+                </div>
+            </div>
+
+            <p class="text-sm text-gray-600">Claude Codeが起動したら、プロジェクトの設計について対話的に相談できます。以下のセクションで紹介するプロンプトを使って、設計を進めていきましょう。</p>
+        </section>
 
         <!-- プロジェクト概要 -->
         <section class="mb-12">
@@ -93,8 +118,8 @@ include 'includes/progress.php';
         <section class="mb-12">
             <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-indigo-200">AIに設計を依頼</h2>
 
-            <div class="bg-white p-6 rounded-lg shadow">
-                <h3 class="font-bold mb-4 text-purple-600">プロンプト例</h3>
+            <div class="bg-indigo-50 border-l-4 border-indigo-500 p-6 rounded-r-lg mb-6">
+                <h3 class="font-bold text-indigo-700 mb-4">Claude Codeへの指示</h3>
                 <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
 <pre>認証付きブログアプリを作成したいです。
 
@@ -119,6 +144,32 @@ include 'includes/progress.php';
 3. フロントエンドのページ構成を教えてください
 4. compose.yamlの設定を教えてください</pre>
                 </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow mb-6">
+                <h3 class="font-bold mb-4 text-indigo-600">Claude Codeが行うこと</h3>
+                <ul class="space-y-3 text-sm">
+                    <li class="flex items-start">
+                        <span class="w-5 h-5 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mr-3 mt-0.5 text-xs font-bold flex-shrink-0">1</span>
+                        <span>要件を分析し、最適なデータベーススキーマを提案します</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="w-5 h-5 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mr-3 mt-0.5 text-xs font-bold flex-shrink-0">2</span>
+                        <span>RESTful APIのエンドポイント設計を一覧で出力します</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="w-5 h-5 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mr-3 mt-0.5 text-xs font-bold flex-shrink-0">3</span>
+                        <span>フロントエンドのページ構成とルーティングを設計します</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="w-5 h-5 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mr-3 mt-0.5 text-xs font-bold flex-shrink-0">4</span>
+                        <span>Docker Composeの構成を含む、プロジェクト全体の構造を提案します</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                <p class="text-sm text-gray-700">Claude Codeが提案した設計を以下に示します。あなたのプロジェクトでも同様の設計になるはずです。</p>
             </div>
         </section>
 
@@ -226,6 +277,46 @@ include 'includes/progress.php';
             </div>
         </section>
 
+        <!-- Claude Codeに設計ドキュメントを作成させる -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-indigo-200">Claude Codeに設計ドキュメントを作成させる</h2>
+
+            <p class="mb-4">設計内容が固まったら、Claude Codeに設計ドキュメントを生成してもらいましょう。実装中のリファレンスとして役立ちます。</p>
+
+            <div class="bg-indigo-50 border-l-4 border-indigo-500 p-6 rounded-r-lg mb-6">
+                <h3 class="font-bold text-indigo-700 mb-3">Claude Codeへの指示</h3>
+                <div class="code-block p-4 rounded font-mono text-sm overflow-x-auto">
+<pre><span class="text-green-400"># Claude Codeに以下のように依頼します</span>
+今までの設計内容をもとに、DESIGN.md ファイルを作成してください。
+以下の内容を含めてください：
+
+1. プロジェクト概要と技術スタック
+2. データベーススキーマ（usersテーブル、postsテーブル）
+3. APIエンドポイント一覧（メソッド、パス、説明、認証要否）
+4. フロントエンドのページ構成とルーティング
+5. Docker Composeのサービス構成</pre>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h3 class="font-bold mb-3 text-indigo-600">設計ドキュメントのメリット</h3>
+                <ul class="text-sm space-y-2">
+                    <li class="flex items-start">
+                        <span class="text-indigo-500 mr-2 mt-1">&#9632;</span>
+                        <span>実装中にAPIのパスやテーブル構造をすぐに確認できる</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-indigo-500 mr-2 mt-1">&#9632;</span>
+                        <span>Claude Codeが DESIGN.md を参照して、設計に沿ったコードを生成してくれる</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-indigo-500 mr-2 mt-1">&#9632;</span>
+                        <span>チーム開発時に設計意図を共有するドキュメントとして活用できる</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
         <!-- 画面設計 -->
         <section class="mb-12">
             <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-indigo-200">画面設計</h2>
@@ -297,5 +388,5 @@ include 'includes/progress.php';
         </div>
     </main>
 
-    
+
 <?php include 'includes/footer.php'; ?>
